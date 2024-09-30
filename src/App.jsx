@@ -4,10 +4,12 @@ import Home from "./Components/Home";
 import Login from "./Components/Login/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserStorage } from "./UserContext";
+import CssBaseline from "@mui/material/CssBaseline";
 
 function App() {
   return (
-    <div>
+    <>
+      <CssBaseline />
       <BrowserRouter>
         <UserStorage>
           <Header />
@@ -17,7 +19,7 @@ function App() {
           </Routes>
         </UserStorage>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 
