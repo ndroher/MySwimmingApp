@@ -20,6 +20,27 @@ export default function SimpleBottomNavigation() {
     BottomNavValueContext
   );
 
+  React.useEffect(() => {
+    if (!bottomNavValue) {
+      switch (window.location.pathname) {
+        case "/conta":
+          setBottomNavValue("perfil");
+          break;
+        case "/estatisticas":
+          setBottomNavValue("estatisticas");
+          break;
+        case "/historico":
+          setBottomNavValue("historico");
+          break;
+        case "/exercicios":
+          setBottomNavValue("exercicios");
+          break;
+        default:
+          break;
+      }
+    }
+  }, [window.location.pathname]);
+
   const StyledFab = styled(Fab)({
     position: "absolute",
     zIndex: 1,
@@ -34,7 +55,7 @@ export default function SimpleBottomNavigation() {
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
       elevation={3}
     >
-      <StyledFab color="primary" aria-label="add">
+      <StyledFab color={data ? "primary" : "inherit"} aria-label="add">
         <AddIcon />
       </StyledFab>
 
