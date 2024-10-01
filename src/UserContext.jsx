@@ -1,6 +1,7 @@
 import React from "react";
 import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from "./api";
 import { useNavigate } from "react-router-dom";
+import { BottomNavValueContext } from "./BottomNavContext";
 
 export const UserContext = React.createContext();
 
@@ -10,6 +11,7 @@ export const UserStorage = ({ children }) => {
   const [loading, setLoading] = React.useState(null);
   const [error, setError] = React.useState(null);
   const navigate = useNavigate();
+  const { setBottomNavValue } = React.useContext(BottomNavValueContext);
 
   async function getUser(token) {
     const { url, options } = USER_GET(token);
@@ -29,6 +31,7 @@ export const UserStorage = ({ children }) => {
       const { token } = await response.json();
       window.localStorage.setItem("token", token);
       await getUser(token);
+      setBottomNavValue("perfil");
       navigate("/conta");
     } catch (error) {
       setError(error.message);
