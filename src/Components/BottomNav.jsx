@@ -14,30 +14,29 @@ import InsightsIcon from "@mui/icons-material/Insights";
 import PersonIcon from "@mui/icons-material/Person";
 
 export default function SimpleBottomNavigation() {
-  const { data } = React.useContext(UserContext);
+  const { login } = React.useContext(UserContext);
 
   const { bottomNavValue, setBottomNavValue } = React.useContext(
     BottomNavValueContext
   );
 
   React.useEffect(() => {
-    if (!bottomNavValue) {
-      switch (window.location.pathname) {
-        case "/conta":
-          setBottomNavValue("perfil");
-          break;
-        case "/estatisticas":
-          setBottomNavValue("estatisticas");
-          break;
-        case "/historico":
-          setBottomNavValue("historico");
-          break;
-        case "/exercicios":
-          setBottomNavValue("exercicios");
-          break;
-        default:
-          break;
-      }
+    switch (window.location.pathname) {
+      case "/conta":
+        setBottomNavValue("perfil");
+        break;
+      case "/estatisticas":
+        setBottomNavValue("estatisticas");
+        break;
+      case "/historico":
+        setBottomNavValue("historico");
+        break;
+      case "/exercicios":
+        setBottomNavValue("exercicios");
+        break;
+      default:
+        setBottomNavValue(null);
+        break;
     }
   }, [window.location.pathname]);
 
@@ -55,42 +54,42 @@ export default function SimpleBottomNavigation() {
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
       elevation={3}
     >
-      <StyledFab color={data ? "primary" : "inherit"} aria-label="add">
+      <StyledFab color={login ? "primary" : "inherit"} aria-label="add">
         <AddIcon />
       </StyledFab>
 
       <BottomNavigation
         value={bottomNavValue}
         onChange={(event, newValue) => {
-          data ? setBottomNavValue(newValue) : setBottomNavValue(null);
+          login ? setBottomNavValue(newValue) : setBottomNavValue(null);
         }}
       >
         <BottomNavigationAction
           label="Perfil"
           value="perfil"
           component={RouterLink}
-          to={data ? "/conta" : "/login"}
+          to={login ? "/conta" : "/login"}
           icon={<PersonIcon />}
         />
         <BottomNavigationAction
           label="Estatísticas"
           value="estatisticas"
           component={RouterLink}
-          to={data ? "/estatisticas" : "/login"}
+          to={login ? "/estatisticas" : "/login"}
           icon={<InsightsIcon />}
         />
         <BottomNavigationAction
           label="Histórico"
           value="historico"
           component={RouterLink}
-          to={data ? "/historico" : "/login"}
+          to={login ? "/historico" : "/login"}
           icon={<HistoryIcon />}
         />
         <BottomNavigationAction
           label="Exercícios"
           value="exercicios"
           component={RouterLink}
-          to={data ? "/exercicios" : "/login"}
+          to={login ? "/exercicios" : "/login"}
           icon={<FitnessCenterIcon />}
         />
       </BottomNavigation>
