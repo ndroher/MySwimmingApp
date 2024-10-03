@@ -8,6 +8,7 @@ import { UserContext } from "../../UserContext";
 import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import { useMediaQuery } from "@mui/material";
+import mainImg from "../../Assets/swimmer-with-equipment-pool-full-shot.jpg";
 
 const Login = () => {
   const { login } = React.useContext(UserContext);
@@ -31,8 +32,7 @@ const Login = () => {
       >
         <Box
           sx={{
-            backgroundImage:
-              "url('src/Assets/swimmer-with-equipment-pool-full-shot.jpg')",
+            backgroundImage: `url(${mainImg})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center center",
