@@ -104,7 +104,7 @@ const LoginCreate = () => {
               Cadastrar
             </Button>
           )}
-          {error && <p>{error}</p>}
+          {error && <Typography color="error">{error}</Typography>}
         </Box>
 
         <Typography sx={{ mb: 2 }}>

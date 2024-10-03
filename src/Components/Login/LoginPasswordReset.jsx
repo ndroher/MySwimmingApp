@@ -94,7 +94,7 @@ const LoginPasswordReset = () => {
               Redefinir
             </Button>
           )}
-          {error && <p>{error}</p>}
+          {error && <Typography color="error">{error}</Typography>}
         </Box>
       </Box>
     </Box>

@@ -95,7 +95,7 @@ const LoginForm = () => {
               Entrar
             </Button>
           )}
-          {error && <p>{error}</p>}
+          {error && <Typography color="error">{error}</Typography>}
         </Box>
 
         <Water
