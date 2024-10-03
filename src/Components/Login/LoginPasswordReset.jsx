@@ -1,6 +1,9 @@
 import React from "react";
 import Input from "../Forms/Input";
-import Button from "../Forms/Button";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Waves from "@mui/icons-material/Waves";
 import useForm from "../../Hooks/useForm";
 import useFetch from "../../Hooks/useFetch";
 import { PASSWORD_RESET } from "../../api";
@@ -35,23 +38,67 @@ const LoginPasswordReset = () => {
   }
 
   return (
-    <section>
-      <h1>Resetar sua senha</h1>
-      <form onSubmit={handleSubmit}>
-        <Input
-          label="Nova Senha"
-          type="password"
-          name="password"
-          {...password}
-        />
-        {loading ? (
-          <Button disabled>Carregando...</Button>
-        ) : (
-          <Button>Resetar</Button>
-        )}
-      </form>
-      {error && <p>{error}</p>}
-    </section>
+    <Box
+      component="section"
+      sx={{
+        display: { xs: "grid", md: "block" },
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      className="animeLeft"
+    >
+      <Box
+        sx={{
+          maxWidth: "30rem",
+          marginTop: "20%",
+          marginLeft: "4rem",
+          marginRight: "4rem",
+          marginBottom: "8rem",
+        }}
+      >
+        <Typography
+          variant="h3"
+          gutterBottom
+          sx={{
+            fontFamily:
+              '"Calistoga", "Roboto", "Helvetica", "Arial", sans-serif;',
+            position: "relative",
+          }}
+        >
+          <Waves
+            color="primary"
+            sx={{
+              position: "absolute",
+              zIndex: "-1",
+              bottom: "5px",
+              left: "-5px",
+            }}
+          />
+          Redefinir senha
+        </Typography>
+
+        <Box component="form" action="" onSubmit={handleSubmit} sx={{ mb: 3 }}>
+          <Input
+            label="Nova Senha"
+            type="password"
+            name="password"
+            fullWidth
+            sx={{ mb: 2 }}
+            {...password}
+          />
+          {loading ? (
+            <Button fullWidth variant="contained" disabled sx={{ my: 2 }}>
+              Redefinindo...
+            </Button>
+          ) : (
+            <Button type="submit" fullWidth variant="contained" sx={{ my: 2 }}>
+              Redefinir
+            </Button>
+          )}
+          {error && <Typography color="error">{error}</Typography>}
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
