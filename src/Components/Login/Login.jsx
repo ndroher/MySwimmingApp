@@ -40,7 +40,7 @@ const Login = () => {
           }}
         />
       </Grid>
-      <Grid size={matches ? 6 : 12} sx={{ height: "100%" }}>
+      <Grid size={matches ? 6 : 12} sx={{ height: "100%", overflowY: "auto" }}>
         <Routes>
           <Route path="/" element={<LoginForm />} />
           <Route path="/criar" element={<LoginCreate />} />
