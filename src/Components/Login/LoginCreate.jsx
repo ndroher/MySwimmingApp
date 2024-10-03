@@ -38,6 +38,7 @@ const LoginCreate = () => {
         justifyContent: "center",
         alignItems: "center",
       }}
+      className="animeLeft"
     >
       <Box
         sx={{

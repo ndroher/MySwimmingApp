@@ -31,6 +31,7 @@ const LoginPasswordLost = () => {
         justifyContent: "center",
         alignItems: "center",
       }}
+      className="animeLeft"
     >
       <Box
         sx={{

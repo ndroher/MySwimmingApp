@@ -45,6 +45,7 @@ const LoginPasswordReset = () => {
         justifyContent: "center",
         alignItems: "center",
       }}
+      className="animeLeft"
     >
       <Box
         sx={{

@@ -30,6 +30,7 @@ const LoginForm = () => {
         justifyContent: "center",
         alignItems: "center",
       }}
+      className="animeLeft"
     >
       <Box
         sx={{
