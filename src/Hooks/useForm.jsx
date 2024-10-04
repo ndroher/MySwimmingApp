@@ -1,6 +1,11 @@
 import React from "react";
 
 const types = {
+  username: {
+    regex: /^[a-zA-Z0-9]([_-]|[a-zA-Z0-9]){1,18}[a-zA-Z0-9]$/,
+    message:
+      "O nome de usuário deve ter entre 5 e 20 caracteres, incluindo letras, números, sublinhados (_) e hífens (-), e deve começar e terminar com uma letra ou número.",
+  },
   email: {
     regex:
       /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,

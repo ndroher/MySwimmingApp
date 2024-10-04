@@ -12,7 +12,7 @@ import { USER_POST } from "../../api";
 import { UserContext } from "../../UserContext";
 
 const LoginCreate = () => {
-  const username = useForm();
+  const username = useForm("username");
   const email = useForm("email");
   const password = useForm("password");
 
@@ -21,13 +21,16 @@ const LoginCreate = () => {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const { url, options } = USER_POST({
-      username: username.value,
-      email: email.value,
-      password: password.value,
-    });
-    const { response } = await request(url, options);
-    if (response.ok) userLogin(username.value, password.value);
+
+    if (username.validate() && email.validate() && password.validate()) {
+      const { url, options } = USER_POST({
+        username: username.value,
+        email: email.value,
+        password: password.value,
+      });
+      const { response } = await request(url, options);
+      if (response.ok) userLogin(username.value, password.value);
+    }
   }
 
   return (
