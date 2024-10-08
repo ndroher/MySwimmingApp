@@ -50,6 +50,20 @@ export function USER_POST(body) {
   };
 }
 
+export function DISPLAY_NAME_PUT(body, token) {
+  return {
+    url: API_URL + "/api/users/me",
+    options: {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
 export function PASSWORD_LOST(body) {
   return {
     url: API_URL + "/api/password/lost",
