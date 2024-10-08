@@ -31,7 +31,11 @@ export const UserStorage = ({ children }) => {
       await getUser(token);
       navigate("/conta");
     } catch (error) {
-      setError(error.message);
+      if (error.message === "Error: Forbidden") {
+        setError("Dados incorretos.");
+      } else {
+        setError(error.message);
+      }
       setLogin(false);
     } finally {
       setLoading(false);
