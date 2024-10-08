@@ -15,6 +15,12 @@ const types = {
     regex: /^.{5,}$/,
     message: "A senha precisa ter no mínimo 5 caracteres",
   },
+  display_name: {
+    regex:
+      /^(?=.{1,24}$)([A-Za-zÀ-ÿ]+((\s)?((\'|\-|\.)?([A-Za-zÀ-ÿ])+))*)([A-Za-zÀ-ÿ])?$/,
+    message:
+      "O nome de exibição deve ter entre 1 e 24 caracteres e deve começar e terminar com uma letra. Números não são permitidos.",
+  },
 };
 
 const useForm = (type) => {
