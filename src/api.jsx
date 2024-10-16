@@ -89,3 +89,15 @@ export function PASSWORD_RESET(body) {
     },
   };
 }
+
+export function EXERCICIOS_GET(token) {
+  return {
+    url: API_URL + "/api/exercicios",
+    options: {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    },
+  };
+}

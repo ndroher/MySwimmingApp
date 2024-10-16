@@ -31,7 +31,7 @@ export default function SimpleBottomNavigation() {
       case "/historico":
         setBottomNavValue("historico");
         break;
-      case "/exercicios":
+      case "/conta/exercicios":
         setBottomNavValue("exercicios");
         break;
       default:
@@ -89,7 +89,7 @@ export default function SimpleBottomNavigation() {
           label="Exercícios"
           value="exercicios"
           component={RouterLink}
-          to={login ? "/exercicios" : "/login"}
+          to={login ? "/conta/exercicios" : "/login"}
           icon={<FitnessCenterIcon />}
         />
       </BottomNavigation>
