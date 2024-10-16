@@ -101,3 +101,17 @@ export function EXERCICIOS_GET(token) {
     },
   };
 }
+
+export function EXERCICIO_POST(body, token) {
+  return {
+    url: API_URL + "/api/exercicio",
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}

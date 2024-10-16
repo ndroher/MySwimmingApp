@@ -1,4 +1,5 @@
 import React from "react";
+import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -20,13 +21,23 @@ const ExercicioItem = ({ exercicio }) => {
     >
       <CardContent sx={{ alignSelf: "center" }}>
         <Typography variant="h6">{exercicio.nome}</Typography>
-        {exercicio.tipo_nado.map((tipo_nado) => (
-          <Typography key={tipo_nado} color="textSecondary">
-            {tipo_nado}
-          </Typography>
-        ))}
+        <Box sx={{ display: "flex" }}>
+          {exercicio.tipo_nado.map((tipo_nado) => (
+            <Typography
+              key={tipo_nado}
+              color="textSecondary"
+              sx={{ mr: "1rem" }}
+            >
+              {tipo_nado}
+            </Typography>
+          ))}
+        </Box>
         {exercicio.equipamentos.map((equipamento) => (
-          <Chip key={equipamento} label={equipamento} sx={{ mt: "1rem" }} />
+          <Chip
+            key={equipamento}
+            label={equipamento}
+            sx={{ mt: "1rem", mr: "1rem" }}
+          />
         ))}
       </CardContent>
       <CardActions

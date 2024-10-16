@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { EXERCICIOS_GET } from "../../api";
 import useFetch from "../../Hooks/useFetch";
 import Box from "@mui/material/Box";
@@ -71,9 +72,10 @@ const Exercicios = () => {
             />
           </FormControl>
           <Button
+            component={RouterLink}
+            to="/conta/exercicios/criar"
             variant="contained"
             sx={{
-              display: "block",
               mt: { xs: "1rem", sm: "0" },
               width: { xs: "100%", sm: "auto" },
             }}
