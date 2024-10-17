@@ -9,8 +9,37 @@ import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import useFetch from "../../Hooks/useFetch";
+import { EXERCICIO_DELETE } from "../../api";
 
-const ExercicioItem = ({ exercicio }) => {
+const ExercicioItem = ({ exercicio, setUpdate }) => {
+  const { data, loading, error, request } = useFetch();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const excluirExercicio = () => {
+    async function excluir() {
+      const token = window.localStorage.getItem("token");
+      const { url, options } = EXERCICIO_DELETE(token, exercicio.id);
+      const { response, json } = await request(url, options);
+      if (response.ok) setUpdate((value) => value + 1);
+    }
+    excluir();
+    handleClose();
+  };
+
   return (
     <Card
       sx={{
@@ -60,10 +89,32 @@ const ExercicioItem = ({ exercicio }) => {
           size="small"
           color="action"
           disabled={!exercicio.personalizado}
+          onClick={handleClickOpen}
           sx={{ marginLeft: "0px !important" }}
         >
           <DeleteIcon />
         </Button>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Excluir Exercício"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Tem certeza que deseja excluir o exercício "{exercicio.nome}"?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancelar</Button>
+            <Button onClick={excluirExercicio} color="error" autoFocus>
+              Excluir
+            </Button>
+          </DialogActions>
+        </Dialog>
       </CardActions>
     </Card>
   );

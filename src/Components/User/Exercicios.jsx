@@ -14,6 +14,7 @@ import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import Waves from "@mui/icons-material/Waves";
 const Exercicios = () => {
   const { data, loading, error, request } = useFetch();
+  const [update, setUpdate] = React.useState(0);
 
   React.useEffect(() => {
     async function getExercicios() {
@@ -22,7 +23,7 @@ const Exercicios = () => {
       const { response, json } = await request(url, options);
     }
     getExercicios();
-  }, []);
+  }, [update]);
 
   if (error) return <div>Error</div>;
   if (loading) return <div>Loading</div>;
@@ -84,7 +85,11 @@ const Exercicios = () => {
           </Button>
         </Box>
         {data.map((exercicio) => (
-          <ExercicioItem key={exercicio.id} exercicio={exercicio} />
+          <ExercicioItem
+            key={exercicio.id}
+            exercicio={exercicio}
+            setUpdate={setUpdate}
+          />
         ))}
       </Container>
     );

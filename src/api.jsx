@@ -141,3 +141,15 @@ export function EXERCICIO_PUT(body, token, id) {
     },
   };
 }
+
+export function EXERCICIO_DELETE(token, id) {
+  return {
+    url: API_URL + `/api/exercicio/${id}`,
+    options: {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    },
+  };
+}
