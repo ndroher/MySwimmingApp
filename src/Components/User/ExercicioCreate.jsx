@@ -23,31 +23,27 @@ const ExercicioCreate = () => {
   const [optionsEquipamentos, setOptionsEquipamentos] = React.useState([]);
 
   const handleChangeTipoNado = (e, v) =>
-    setSelectedTipoNado(v.map((item) => item.value));
+    setSelectedTipoNado(v.map((item) => item));
   const handleChangeEquipamentos = (e, v) =>
-    setSelectedEquipamentos(v.map((item) => item.value));
+    setSelectedEquipamentos(v.map((item) => item));
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    setOptionsNados([
-      { key: 0, value: "Borboleta" },
-      { key: 1, value: "Costas" },
-      { key: 2, value: "Crawl" },
-      { key: 3, value: "Peito" },
-    ]);
+    setOptionsNados(["Borboleta", "Costas", "Crawl", "Peito"]);
+
     setOptionsEquipamentos([
-      { key: 0, value: "Prancha" },
-      { key: 1, value: "PullBuoy" },
-      { key: 2, value: "Nadadeiras" },
-      { key: 3, value: "Palmar" },
-      { key: 4, value: "Paraquedas" },
-      { key: 5, value: "Corda Elástica" },
-      { key: 6, value: "Snorkel" },
-      { key: 7, value: "Halteres de Espuma" },
-      { key: 8, value: "Cinto Flutuante" },
-      { key: 9, value: "Espaguete Flutuador" },
-      { key: 10, value: "Outro" },
+      "Prancha",
+      "PullBuoy",
+      "Nadadeiras",
+      "Palmar",
+      "Paraquedas",
+      "Corda Elástica",
+      "Snorkel",
+      "Halteres de Espuma",
+      "Cinto Flutuante",
+      "Espaguete Flutuador",
+      "Outro",
     ]);
   }, []);
 
@@ -105,7 +101,7 @@ const ExercicioCreate = () => {
           multiple
           id="tipo-nado"
           options={optionsNados}
-          getOptionLabel={(optionNados) => optionNados.value}
+          getOptionLabel={(optionNados) => optionNados}
           filterSelectedOptions
           onChange={handleChangeTipoNado}
           renderInput={(params) => (
@@ -118,7 +114,7 @@ const ExercicioCreate = () => {
           multiple
           id="equipamentos-utilizados"
           options={optionsEquipamentos}
-          getOptionLabel={(optionEquipamentos) => optionEquipamentos.value}
+          getOptionLabel={(optionEquipamentos) => optionEquipamentos}
           filterSelectedOptions
           onChange={handleChangeEquipamentos}
           renderInput={(params) => (
