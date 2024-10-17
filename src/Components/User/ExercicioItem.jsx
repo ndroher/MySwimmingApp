@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -46,7 +47,13 @@ const ExercicioItem = ({ exercicio }) => {
           justifyContent: { xs: "space-around", sm: "auto" },
         }}
       >
-        <Button size="small" color="action" disabled={!exercicio.personalizado}>
+        <Button
+          component={RouterLink}
+          to={`/conta/exercicios/editar?id=${exercicio.id}`}
+          size="small"
+          color="action"
+          disabled={!exercicio.personalizado}
+        >
           <EditIcon />
         </Button>
         <Button
