@@ -14,8 +14,8 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import useFetch from "../../Hooks/useFetch";
-import { EXERCICIO_DELETE } from "../../api";
+import useFetch from "../../../Hooks/useFetch";
+import { EXERCICIO_DELETE } from "../../../api";
 
 const ExercicioItem = ({ exercicio, setUpdate }) => {
   const { data, loading, error, request } = useFetch();

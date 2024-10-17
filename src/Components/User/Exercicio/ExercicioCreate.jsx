@@ -5,11 +5,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import Input from "../Forms/Input";
+import Input from "../../Forms/Input";
 import Waves from "@mui/icons-material/Waves";
-import useForm from "../../Hooks/useForm";
-import useFetch from "../../Hooks/useFetch";
-import { EXERCICIO_POST } from "../../api";
+import useForm from "../../../Hooks/useForm";
+import useFetch from "../../../Hooks/useFetch";
+import { EXERCICIO_POST } from "../../../api";
 import { useNavigate } from "react-router-dom";
 
 const ExercicioCreate = () => {

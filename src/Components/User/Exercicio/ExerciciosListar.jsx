@@ -1,7 +1,7 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { EXERCICIOS_GET } from "../../api";
-import useFetch from "../../Hooks/useFetch";
+import { EXERCICIOS_GET } from "../../../api";
+import useFetch from "../../../Hooks/useFetch";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
