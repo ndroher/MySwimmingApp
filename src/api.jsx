@@ -89,3 +89,67 @@ export function PASSWORD_RESET(body) {
     },
   };
 }
+
+export function EXERCICIOS_GET(token) {
+  return {
+    url: API_URL + "/api/exercicios",
+    options: {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    },
+  };
+}
+
+export function EXERCICIO_POST(body, token) {
+  return {
+    url: API_URL + "/api/exercicio",
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
+export function EXERCICIO_GET(token, id) {
+  return {
+    url: API_URL + `/api/exercicio/${id}`,
+    options: {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    },
+  };
+}
+
+export function EXERCICIO_PUT(body, token, id) {
+  return {
+    url: API_URL + `/api/exercicio/${id}`,
+    options: {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
+export function EXERCICIO_DELETE(token, id) {
+  return {
+    url: API_URL + `/api/exercicio/${id}`,
+    options: {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    },
+  };
+}
