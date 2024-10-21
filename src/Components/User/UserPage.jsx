@@ -6,16 +6,13 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useParams } from "react-router-dom";
-import Avatar from "@mui/material/Avatar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import { styled } from "@mui/material";
 import TreinoItem from "./Treino/TreinoItem";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { UserContext } from "../../UserContext";
+import UserInfo from "./UserInfo";
 import TuneIcon from "@mui/icons-material/Tune";
 
 const UserPage = () => {
@@ -23,21 +20,6 @@ const UserPage = () => {
   const { data: userData, loading: userLoading } =
     React.useContext(UserContext);
   const { data, loading, error, request } = useFetch();
-
-  const [tabsValue, setTabsValue] = React.useState(0);
-
-  const handleTabsChange = (event, newValue) => {
-    setTabsValue(newValue);
-  };
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const openMenu = Boolean(anchorEl);
-  const handleClickMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
-  };
 
   const [anchorElMetas, setAnchorElMetas] = React.useState(null);
   const openMenuMetas = Boolean(anchorElMetas);
@@ -105,81 +87,15 @@ const UserPage = () => {
       },
     });
 
-    const exibirConfig = userData.username === username ? "block" : "none";
-
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            position: "relative",
-          }}
-        >
-          <Avatar
-            alt={data.username}
-            src={data.avatar_url}
-            sx={{ width: 120, height: 120 }}
-          />
-          <Typography variant="h5" sx={{ mt: "1rem" }}>
-            {data.display_name}
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            color="textSecondary"
-            sx={{ fontStyle: "italic" }}
-          >
-            @{data.username}
-          </Typography>
-
-          <Box
-            sx={{
-              display: `${exibirConfig}`,
-              position: "absolute",
-              top: "0",
-              right: "0",
-            }}
-          >
-            <IconButton
-              id="basic-button"
-              aria-controls={open ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClickMenu}
-            >
-              <ManageAccountsIcon />
-            </IconButton>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorEl}
-              open={openMenu}
-              onClose={handleCloseMenu}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
-              }}
-            >
-              <MenuItem component={RouterLink} to="/conta/alterar-nome">
-                Alterar Nome de Exibição
-              </MenuItem>
-              <MenuItem component={RouterLink} to="/conta/alterar-foto">
-                Alterar Foto de Perfil
-              </MenuItem>
-            </Menu>
-          </Box>
-        </Box>
-
-        <Tabs value={tabsValue} onChange={handleTabsChange} centered>
-          <Tab label="Perfil" />
-          <Tab label="Estatísticas" />
-          <Tab label="Histórico" />
-        </Tabs>
+        <UserInfo />
         <Box sx={{ mt: 4 }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
-            <Typography variant="h5">Meta de Treinos</Typography>
+            <Typography variant="h5">Metas de Treinos</Typography>
             <Box
               sx={{
-                display: `${exibirConfig}`,
+                display: `${userData.username === username ? "block" : "none"}`,
               }}
             >
               <IconButton
