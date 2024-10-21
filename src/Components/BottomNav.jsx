@@ -14,31 +14,33 @@ import InsightsIcon from "@mui/icons-material/Insights";
 import PersonIcon from "@mui/icons-material/Person";
 
 export default function SimpleBottomNavigation() {
-  const { login } = React.useContext(UserContext);
+  const { login, data, loading } = React.useContext(UserContext);
 
   const { bottomNavValue, setBottomNavValue } = React.useContext(
     BottomNavValueContext
   );
 
   React.useEffect(() => {
-    switch (window.location.pathname) {
-      case "/conta":
-        setBottomNavValue("perfil");
-        break;
-      case "/estatisticas":
-        setBottomNavValue("estatisticas");
-        break;
-      case "/historico":
-        setBottomNavValue("historico");
-        break;
-      case "/conta/exercicios":
-        setBottomNavValue("exercicios");
-        break;
-      default:
-        setBottomNavValue(null);
-        break;
+    if (!loading && data) {
+      switch (window.location.pathname) {
+        case `/user/${data.username}`:
+          setBottomNavValue("perfil");
+          break;
+        case "/estatisticas":
+          setBottomNavValue("estatisticas");
+          break;
+        case "/historico":
+          setBottomNavValue("historico");
+          break;
+        case "/conta/exercicios":
+          setBottomNavValue("exercicios");
+          break;
+        default:
+          setBottomNavValue(null);
+          break;
+      }
     }
-  }, [window.location.pathname]);
+  }, [window.location.pathname, loading, data]);
 
   const StyledFab = styled(Fab)({
     position: "absolute",
@@ -68,7 +70,7 @@ export default function SimpleBottomNavigation() {
           label="Perfil"
           value="perfil"
           component={RouterLink}
-          to={login ? "/conta" : "/login"}
+          to={login ? `/user/${data.username}` : "/login"}
           icon={<PersonIcon />}
         />
         <BottomNavigationAction

@@ -17,7 +17,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import PoolIcon from "@mui/icons-material/Pool";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import Avatar from "@mui/material/Avatar";
 
 const Header = () => {
   const { data, userLogout } = React.useContext(UserContext);
@@ -91,7 +91,11 @@ const Header = () => {
                   >
                     {data.name}
                   </Typography>
-                  <AccountCircle />
+                  <Avatar
+                    alt={data.username}
+                    src={data.avatar_url}
+                    sx={{ width: 32, height: 32 }}
+                  />
                 </Box>
               </Tooltip>
               <Menu
@@ -112,7 +116,7 @@ const Header = () => {
               >
                 <MenuItem
                   component={RouterLink}
-                  to="/conta"
+                  to={`/user/${data.username}`}
                   onClick={() => {
                     setBottomNavValue("perfil");
                     setAnchorElUser(null);

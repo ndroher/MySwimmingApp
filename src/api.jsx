@@ -90,6 +90,15 @@ export function PASSWORD_RESET(body) {
   };
 }
 
+export function USER_PROFILE_GET(username) {
+  return {
+    url: API_URL + `/api/user/${username}`,
+    options: {
+      method: "GET",
+    },
+  };
+}
+
 export function EXERCICIOS_GET(token) {
   return {
     url: API_URL + "/api/exercicios",
@@ -148,8 +157,22 @@ export function EXERCICIO_DELETE(token, id) {
     options: {
       method: "DELETE",
       headers: {
+        "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
+    },
+  };
+}
+
+export function CHANGE_PROFILE_PICTURE_POST(formData, token) {
+  return {
+    url: API_URL + "/api/conta/foto",
+    options: {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+      body: formData,
     },
   };
 }

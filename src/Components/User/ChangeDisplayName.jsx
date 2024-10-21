@@ -1,14 +1,18 @@
 import React from "react";
 import Input from "../Forms/Input";
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import useForm from "../../Hooks/useForm";
 import useFetch from "../../Hooks/useFetch";
 import { DISPLAY_NAME_PUT } from "../../api";
 import { useNavigate } from "react-router-dom";
+import Waves from "@mui/icons-material/Waves";
+import { UserContext } from "../../UserContext";
 
 const ChangeDisplayName = () => {
+  const { data } = React.useContext(UserContext);
   const navigate = useNavigate();
   const display_name = useForm("display_name");
   const { loading, error, request } = useFetch();
@@ -26,13 +30,30 @@ const ChangeDisplayName = () => {
         token
       );
       const { response } = await request(url, options);
-      if (response.ok) navigate("/conta");
+      if (response.ok) navigate(`/user/${data.username}`);
     }
   }
 
   return (
-    <Box>
-      <Typography variant="h3" gutterBottom>
+    <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+      <Typography
+        variant="h3"
+        gutterBottom
+        sx={{
+          fontFamily:
+            '"Calistoga", "Roboto", "Helvetica", "Arial", sans-serif;',
+          position: "relative",
+        }}
+      >
+        <Waves
+          color="primary"
+          sx={{
+            position: "absolute",
+            zIndex: "-1",
+            bottom: "5px",
+            left: "-5px",
+          }}
+        />
         Alterar Nome de Exibição
       </Typography>
 
@@ -55,7 +76,7 @@ const ChangeDisplayName = () => {
         )}
         {error && <Typography color="error">{error}</Typography>}
       </Box>
-    </Box>
+    </Container>
   );
 };
 
