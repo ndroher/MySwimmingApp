@@ -50,8 +50,6 @@ const UserPage = () => {
 
   React.useEffect(() => {
     async function getUserProfileData() {
-      const token = window.localStorage.getItem("token");
-
       const { url, options } = USER_PROFILE_GET(username);
       const { response, json } = await request(url, options);
     }
