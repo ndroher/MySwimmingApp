@@ -190,3 +190,12 @@ export function USER_GOALS_PUT(body, token) {
     },
   };
 }
+
+export function USER_HISTORICO_GET(username) {
+  return {
+    url: API_URL + `/api/user/${username}/historico`,
+    options: {
+      method: "GET",
+    },
+  };
+}
