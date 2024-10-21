@@ -176,3 +176,17 @@ export function CHANGE_PROFILE_PICTURE_POST(formData, token) {
     },
   };
 }
+
+export function USER_GOALS_PUT(body, token) {
+  return {
+    url: API_URL + "/api/user/goals",
+    options: {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}

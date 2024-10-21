@@ -16,6 +16,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { UserContext } from "../../UserContext";
+import TuneIcon from "@mui/icons-material/Tune";
 
 const UserPage = () => {
   const { username } = useParams();
@@ -36,6 +37,15 @@ const UserPage = () => {
   };
   const handleCloseMenu = () => {
     setAnchorEl(null);
+  };
+
+  const [anchorElMetas, setAnchorElMetas] = React.useState(null);
+  const openMenuMetas = Boolean(anchorElMetas);
+  const handleClickMenuMetas = (event) => {
+    setAnchorElMetas(event.currentTarget);
+  };
+  const handleCloseMenuMetas = () => {
+    setAnchorElMetas(null);
   };
 
   React.useEffect(() => {
@@ -167,9 +177,37 @@ const UserPage = () => {
           <Tab label="Histórico" />
         </Tabs>
         <Box sx={{ mt: 4 }}>
-          <Typography variant="h5" sx={{ mb: 1 }}>
-            Meta de Treinos
-          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>
+            <Typography variant="h5">Meta de Treinos</Typography>
+            <Box
+              sx={{
+                display: `${exibirConfig}`,
+              }}
+            >
+              <IconButton
+                id="metas-button"
+                aria-controls={open ? "metas-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClickMenuMetas}
+              >
+                <TuneIcon />
+              </IconButton>
+              <Menu
+                id="metas-menu"
+                anchorEl={anchorElMetas}
+                open={openMenuMetas}
+                onClose={handleCloseMenuMetas}
+                MenuListProps={{
+                  "aria-labelledby": "metas-button",
+                }}
+              >
+                <MenuItem component={RouterLink} to="/conta/alterar-metas">
+                  Alterar Metas
+                </MenuItem>
+              </Menu>
+            </Box>
+          </Box>
           <Box sx={{ mb: 2 }}>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <Typography variant="h6" color="textSecondary">
