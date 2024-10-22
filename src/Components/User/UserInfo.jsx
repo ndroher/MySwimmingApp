@@ -62,7 +62,7 @@ const UserInfo = () => {
     }
   }, [window.location.pathname, loading, data]);
 
-  if (data && userData) {
+  if (data) {
     return (
       <>
         <Box
@@ -91,7 +91,13 @@ const UserInfo = () => {
 
           <Box
             sx={{
-              display: `${userData.username === username ? "block" : "none"}`,
+              display: `${
+                userData
+                  ? userData.username === username
+                    ? "block"
+                    : "none"
+                  : "none"
+              }`,
               position: "absolute",
               top: "0",
               right: "0",

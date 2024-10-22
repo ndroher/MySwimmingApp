@@ -40,7 +40,7 @@ const UserPage = () => {
 
   if (error) return <div>Error</div>;
   if (loading && userLoading) return <div>Loading</div>;
-  if (data && userData) {
+  if (data) {
     const porcentagemSemanal =
       (Number(data.goals.weekly_progress) / Number(data.goals.weekly_goal)) *
       100;
@@ -95,7 +95,13 @@ const UserPage = () => {
             <Typography variant="h5">Metas de Treinos</Typography>
             <Box
               sx={{
-                display: `${userData.username === username ? "block" : "none"}`,
+                display: `${
+                  userData
+                    ? userData.username === username
+                      ? "block"
+                      : "none"
+                    : "none"
+                }`,
               }}
             >
               <IconButton
