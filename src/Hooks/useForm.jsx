@@ -22,8 +22,8 @@ const types = {
       "O nome de exibição deve ter entre 1 e 24 caracteres e deve começar e terminar com uma letra. Números não são permitidos.",
   },
   number: {
-    regex: /^\d+$/,
-    message: "Utilize somente números.",
+    regex: /^([1-9][0-9]+|[1-9])$/,
+    message: "Insira um número positivo.",
   },
 };
 

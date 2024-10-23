@@ -199,3 +199,17 @@ export function USER_HISTORICO_GET(username) {
     },
   };
 }
+
+export function TREINO_POST(body, token) {
+  return {
+    url: API_URL + "/api/treino",
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}

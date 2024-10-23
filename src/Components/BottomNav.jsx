@@ -56,7 +56,12 @@ export default function SimpleBottomNavigation() {
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 1 }}
       elevation={3}
     >
-      <StyledFab color={login ? "primary" : "inherit"} aria-label="add">
+      <StyledFab
+        color={login ? "primary" : "inherit"}
+        aria-label="add"
+        component={RouterLink}
+        to={login ? "/conta/novo-treino" : "/login"}
+      >
         <AddIcon />
       </StyledFab>
 

@@ -6,6 +6,7 @@ import ChangeGoals from "./ChangeGoals";
 import ExerciciosListar from "./Exercicio/ExerciciosListar";
 import ExercicioCreate from "./Exercicio/ExercicioCreate";
 import ExercicioEdit from "./Exercicio/ExercicioEdit";
+import TreinoCreate from "./Treino/TreinoCreate";
 
 const Conta = () => {
   return (
@@ -17,6 +18,7 @@ const Conta = () => {
         <Route path="/alterar-metas" element={<ChangeGoals />} />
         <Route path="/exercicios/criar" element={<ExercicioCreate />} />
         <Route path="/exercicios/editar" element={<ExercicioEdit />} />
+        <Route path="/novo-treino" element={<TreinoCreate />} />
       </Routes>
     </>
   );
