@@ -49,7 +49,16 @@ const TreinoItem = ({ treino }) => {
                     borderInlineColor: "white",
                   }}
                 ></Box>
-                <Typography color="textSecondary">{tipo_de_nado}</Typography>
+                <Typography
+                  color="textSecondary"
+                  sx={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {tipo_de_nado}
+                </Typography>
               </Box>
             )
           )}
