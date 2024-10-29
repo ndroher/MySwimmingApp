@@ -213,3 +213,12 @@ export function TREINO_POST(body, token) {
     },
   };
 }
+
+export function USER_TREINO_GET(username, treino_id) {
+  return {
+    url: API_URL + `/api/user/${username}/treino/${treino_id}`,
+    options: {
+      method: "GET",
+    },
+  };
+}

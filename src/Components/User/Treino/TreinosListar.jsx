@@ -54,7 +54,14 @@ const TreinosListar = () => {
           </FormControl>
         </Box>
         {data.map((treino) => (
-          <TreinoItem key={treino.id} treino={treino} setUpdate={setUpdate} />
+          <Box
+            key={treino.id}
+            component={RouterLink}
+            to={`/user/${username}/treino/${treino.id}`}
+            sx={{ textDecoration: "none" }}
+          >
+            <TreinoItem treino={treino} setUpdate={setUpdate} />
+          </Box>
         ))}
       </Container>
     );
