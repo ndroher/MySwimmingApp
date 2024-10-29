@@ -4,34 +4,28 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Input from "../../Forms/Input";
 import Waves from "@mui/icons-material/Waves";
-import useForm from "../../../Hooks/useForm";
 import useFetch from "../../../Hooks/useFetch";
-import { USER_TREINO_GET, EXERCICIOS_GET } from "../../../api";
-import { useNavigate } from "react-router-dom";
-import InputAdornment from "@mui/material/InputAdornment";
-import AddIcon from "@mui/icons-material/Add";
+import { USER_TREINO_GET, TREINO_DELETE } from "../../../api";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { UserContext } from "../../../UserContext";
-import PropTypes from "prop-types";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import Dialog from "@mui/material/Dialog";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
-import { Link as RouterLink, useParams } from "react-router-dom";
+import { Link as RouterLink, useParams, useNavigate } from "react-router-dom";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const TreinoInfo = () => {
   const { username, treino_id } = useParams();
+  const { data: userData, loading: userLoading } =
+    React.useContext(UserContext);
   const { data, loading, error, request } = useFetch();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     async function getHistorico() {
@@ -40,6 +34,26 @@ const TreinoInfo = () => {
     }
     getHistorico();
   }, []);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const excluirTreino = () => {
+    async function excluir() {
+      const token = window.localStorage.getItem("token");
+      const { url, options } = TREINO_DELETE(token, data.id);
+      const { response, json } = await request(url, options);
+      if (response.ok) navigate(`/user/${username}/historico`);
+    }
+    excluir();
+  };
 
   if (error) return <div>{error}</div>;
   if (loading) return <div>Loading</div>;
@@ -52,25 +66,65 @@ const TreinoInfo = () => {
     const cores = ["#1976d2", "#fbc02d", "#c2185b", "#7b1fa2"];
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem", mb: 10 }}>
-        <Typography
-          variant="h3"
-          sx={{
-            fontFamily:
-              '"Calistoga", "Roboto", "Helvetica", "Arial", sans-serif;',
-            position: "relative",
-          }}
-        >
-          <Waves
-            color="primary"
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography
+            variant="h3"
             sx={{
-              position: "absolute",
-              zIndex: "-1",
-              bottom: "5px",
-              left: "-5px",
+              fontFamily:
+                '"Calistoga", "Roboto", "Helvetica", "Arial", sans-serif;',
+              position: "relative",
             }}
-          />
-          {data.nome}
-        </Typography>
+          >
+            <Waves
+              color="primary"
+              sx={{
+                position: "absolute",
+                zIndex: "-1",
+                bottom: "5px",
+                left: "-5px",
+              }}
+            />
+            {data.nome}
+          </Typography>
+          {userData ? (
+            userData.username === username ? (
+              <>
+                <Button
+                  size="small"
+                  color="action"
+                  onClick={handleClickOpen}
+                  sx={{
+                    marginLeft: "0px !important",
+                    "&:hover": { color: "#d32f2f" },
+                  }}
+                >
+                  <DeleteIcon />
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogTitle id="alert-dialog-title">
+                    Excluir Treino
+                  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                      Tem certeza que deseja excluir o treino "{data.nome}"?
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClose}>Cancelar</Button>
+                    <Button onClick={excluirTreino} color="error" autoFocus>
+                      Excluir
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </>
+            ) : null
+          ) : null}
+        </Box>
         <Typography variant="h6" color="textSecondary">
           {data.post_date}
         </Typography>

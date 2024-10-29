@@ -222,3 +222,16 @@ export function USER_TREINO_GET(username, treino_id) {
     },
   };
 }
+
+export function TREINO_DELETE(token, id) {
+  return {
+    url: API_URL + `/api/treino/${id}`,
+    options: {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    },
+  };
+}
