@@ -63,7 +63,12 @@ const TreinoInfo = () => {
       (tipo_de_nado) =>
         (totalRepeticoes += data.repeticoes_por_tipo_de_nado[tipo_de_nado])
     );
-    const cores = ["#1976d2", "#fbc02d", "#c2185b", "#7b1fa2"];
+    const cores = {
+      Crawl: "#1976d2",
+      Costas: "#fbc02d",
+      Borboleta: "#c2185b",
+      Peito: "#7b1fa2",
+    };
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem", mb: 10 }}>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -140,7 +145,8 @@ const TreinoInfo = () => {
                 <Box
                   sx={{
                     height: ".5rem",
-                    backgroundColor: cores[index % cores.length],
+                    backgroundColor:
+                      cores[tipo_de_nado] || "rgba(0, 0, 0, 0.08)",
                     borderInlineEnd: "solid",
                     borderInlineColor: "white",
                   }}

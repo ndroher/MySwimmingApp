@@ -11,6 +11,12 @@ const TreinoItem = ({ treino }) => {
     (tipo_de_nado) =>
       (totalRepeticoes += treino.repeticoes_por_tipo_de_nado[tipo_de_nado])
   );
+  const cores = {
+    Crawl: "#1976d2",
+    Costas: "#fbc02d",
+    Borboleta: "#c2185b",
+    Peito: "#7b1fa2",
+  };
   return (
     <Card
       sx={{
@@ -44,7 +50,8 @@ const TreinoItem = ({ treino }) => {
                 <Box
                   sx={{
                     height: ".5rem",
-                    backgroundColor: "#1976d2",
+                    backgroundColor:
+                      cores[tipo_de_nado] || "rgba(0, 0, 0, 0.08)",
                     borderInlineEnd: "solid",
                     borderInlineColor: "white",
                   }}
