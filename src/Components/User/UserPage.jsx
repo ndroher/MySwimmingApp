@@ -172,14 +172,20 @@ const UserPage = () => {
           <Typography variant="h5" sx={{ mb: 1 }}>
             Último Treino
           </Typography>
-          <Box
-            key={data.ultimo_treino.id}
-            component={RouterLink}
-            to={`/user/${username}/treino/${data.ultimo_treino.id}`}
-            sx={{ textDecoration: "none" }}
-          >
-            <TreinoItem treino={data.ultimo_treino} />
-          </Box>
+          {data.ultimo_treino ? (
+            <Box
+              key={data.ultimo_treino.id}
+              component={RouterLink}
+              to={`/user/${username}/treino/${data.ultimo_treino.id}`}
+              sx={{ textDecoration: "none" }}
+            >
+              <TreinoItem treino={data.ultimo_treino} />
+            </Box>
+          ) : (
+            <Typography color="textSecondary">
+              Não há nenhum treino registrado
+            </Typography>
+          )}
         </Box>
       </Container>
     );
