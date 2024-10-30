@@ -52,9 +52,10 @@ const UserPage = () => {
       100;
 
     const WeeklyBar = styled("div")({
-      backgroundColor: "#1976d2",
+      backgroundColor: "rgb(77, 171, 245)",
       width: "0%",
       height: "100%",
+      borderRadius: "1rem",
       animation: "WeeklyBar 0.5s forwards",
       "@keyframes WeeklyBar": {
         to: {
@@ -64,9 +65,10 @@ const UserPage = () => {
     });
 
     const MonthlyBar = styled("div")({
-      backgroundColor: "#1976d2",
+      backgroundColor: "#2196f3",
       width: "0%",
       height: "100%",
+      borderRadius: "1rem",
       animation: "MonthlyBar 0.5s forwards",
       "@keyframes MonthlyBar": {
         to: {
@@ -76,9 +78,10 @@ const UserPage = () => {
     });
 
     const YearlyBar = styled("div")({
-      backgroundColor: "#1976d2",
+      backgroundColor: "rgb(23, 105, 170)",
       width: "0%",
       height: "100%",
+      borderRadius: "1rem",
       animation: "YearlyBar 0.5s forwards",
       "@keyframes YearlyBar": {
         to: {
@@ -137,7 +140,13 @@ const UserPage = () => {
                 {data.goals.weekly_progress} / {data.goals.weekly_goal}
               </Typography>
             </Box>
-            <Box sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)", height: "1rem" }}>
+            <Box
+              sx={{
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+                height: ".5rem",
+                borderRadius: "1rem",
+              }}
+            >
               <WeeklyBar></WeeklyBar>
             </Box>
           </Box>
@@ -150,7 +159,13 @@ const UserPage = () => {
                 {data.goals.monthly_progress} / {data.goals.monthly_goal}
               </Typography>
             </Box>
-            <Box sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)", height: "1rem" }}>
+            <Box
+              sx={{
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+                height: ".5rem",
+                borderRadius: "1rem",
+              }}
+            >
               <MonthlyBar></MonthlyBar>
             </Box>
           </Box>
@@ -163,7 +178,13 @@ const UserPage = () => {
                 {data.goals.yearly_progress} / {data.goals.yearly_goal}
               </Typography>
             </Box>
-            <Box sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)", height: "1rem" }}>
+            <Box
+              sx={{
+                backgroundColor: "rgba(0, 0, 0, 0.1)",
+                height: ".5rem",
+                borderRadius: "1rem",
+              }}
+            >
               <YearlyBar></YearlyBar>
             </Box>
           </Box>
