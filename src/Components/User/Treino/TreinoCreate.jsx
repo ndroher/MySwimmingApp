@@ -172,11 +172,25 @@ const TreinoCreate = () => {
   }
 
   function validateChegadas() {
-    return errorChegadas.every(
+    let newErrors = [...errorChegadas];
+
+    const errorsValid = newErrors.every(
       (error) =>
         !error ||
         Object.values(error).every((fieldError) => fieldError === null)
     );
+
+    const chegadasValid = chegadas.every((chegada, index) => {
+      if (chegada.repeticoes === null || chegada.repeticoes === "") {
+        newErrors[index].repeticoes = "Preencha um valor";
+        return false;
+      }
+      return true;
+    });
+
+    setErrorChegadas(newErrors);
+
+    return errorsValid && chegadasValid;
   }
 
   const handleChegadaChange = (index, field, value) => {
