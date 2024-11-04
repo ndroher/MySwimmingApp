@@ -125,14 +125,11 @@ export function EXERCICIO_POST(body, token) {
   };
 }
 
-export function EXERCICIO_GET(token, id) {
+export function EXERCICIO_GET(id) {
   return {
     url: API_URL + `/api/exercicio/${id}`,
     options: {
       method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
     },
   };
 }
@@ -232,6 +229,15 @@ export function TREINO_DELETE(token, id) {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
+    },
+  };
+}
+
+export function USER_ESTATISTICAS_GET(username) {
+  return {
+    url: API_URL + `/api/user/${username}/estatisticas`,
+    options: {
+      method: "GET",
     },
   };
 }

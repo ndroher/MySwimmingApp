@@ -26,7 +26,7 @@ export default function SimpleBottomNavigation() {
         case `/user/${data.username}`:
           setBottomNavValue("perfil");
           break;
-        case "/estatisticas":
+        case `/user/${data.username}/estatisticas`:
           setBottomNavValue("estatisticas");
           break;
         case `/user/${data.username}/historico`:
@@ -82,7 +82,7 @@ export default function SimpleBottomNavigation() {
           label="Estatísticas"
           value="estatisticas"
           component={RouterLink}
-          to={login ? "/estatisticas" : "/login"}
+          to={login ? `/user/${data.username}/estatisticas` : "/login"}
           icon={<InsightsIcon />}
         />
         <BottomNavigationAction
