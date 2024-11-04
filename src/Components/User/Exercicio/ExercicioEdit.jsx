@@ -35,8 +35,7 @@ const ExercicioEdit = () => {
 
   React.useEffect(() => {
     async function getExercicio() {
-      const token = window.localStorage.getItem("token");
-      const { url, options } = EXERCICIO_GET(token, searchParams.get("id"));
+      const { url, options } = EXERCICIO_GET(searchParams.get("id"));
       const { response, json } = await request(url, options);
     }
     getExercicio();
