@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import ExercicioItem from "./ExercicioItem";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import Waves from "@mui/icons-material/Waves";
+import Loading from "../../Helper/Loading";
 const Exercicios = () => {
   const { data, loading, error, request } = useFetch();
   const [update, setUpdate] = React.useState(0);
@@ -26,7 +27,7 @@ const Exercicios = () => {
   }, [update]);
 
   if (error) return <div>Error</div>;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Loading />;
   if (data)
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>

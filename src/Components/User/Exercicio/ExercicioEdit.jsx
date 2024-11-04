@@ -11,6 +11,7 @@ import useForm from "../../../Hooks/useForm";
 import useFetch from "../../../Hooks/useFetch";
 import { EXERCICIO_GET, EXERCICIO_PUT } from "../../../api";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Loading from "../../Helper/Loading";
 
 const ExercicioEdit = () => {
   const nome_exercicio = useForm();
@@ -92,7 +93,7 @@ const ExercicioEdit = () => {
   }
 
   if (error) return <div>Error</div>;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Loading />;
   if (data)
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>

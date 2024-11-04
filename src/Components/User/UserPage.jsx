@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { UserContext } from "../../UserContext";
 import UserInfo from "./UserInfo";
 import TuneIcon from "@mui/icons-material/Tune";
+import Loading from "../Helper/Loading";
 
 const UserPage = () => {
   const { username } = useParams();
@@ -39,7 +40,7 @@ const UserPage = () => {
   }, [username]);
 
   if (error) return <div>Error</div>;
-  if (loading && userLoading) return <div>Loading</div>;
+  if (loading && userLoading) return <Loading />;
   if (data) {
     const porcentagemSemanal =
       (Number(data.goals.weekly_progress) / Number(data.goals.weekly_goal)) *

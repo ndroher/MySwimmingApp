@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import TreinoItem from "./TreinoItem";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import UserInfo from "../UserInfo";
+import Loading from "../../Helper/Loading";
 
 const TreinosListar = () => {
   const { username } = useParams();
@@ -25,7 +26,7 @@ const TreinosListar = () => {
   }, [update]);
 
   if (error) return <div>{error}</div>;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Loading />;
   if (data)
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>

@@ -19,6 +19,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Loading from "../../Helper/Loading";
 
 const TreinoInfo = () => {
   const { username, treino_id } = useParams();
@@ -56,7 +57,7 @@ const TreinoInfo = () => {
   };
 
   if (error) return <div>{error}</div>;
-  if (loading) return <div>Loading</div>;
+  if (loading) return <Loading />;
   if (data) {
     let totalRepeticoes = 0;
     Object.keys(data.repeticoes_por_tipo_de_nado).map(
