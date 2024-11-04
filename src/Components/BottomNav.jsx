@@ -14,31 +14,33 @@ import InsightsIcon from "@mui/icons-material/Insights";
 import PersonIcon from "@mui/icons-material/Person";
 
 export default function SimpleBottomNavigation() {
-  const { login } = React.useContext(UserContext);
+  const { login, data, loading } = React.useContext(UserContext);
 
   const { bottomNavValue, setBottomNavValue } = React.useContext(
     BottomNavValueContext
   );
 
   React.useEffect(() => {
-    switch (window.location.pathname) {
-      case "/conta":
-        setBottomNavValue("perfil");
-        break;
-      case "/estatisticas":
-        setBottomNavValue("estatisticas");
-        break;
-      case "/historico":
-        setBottomNavValue("historico");
-        break;
-      case "/conta/exercicios":
-        setBottomNavValue("exercicios");
-        break;
-      default:
-        setBottomNavValue(null);
-        break;
+    if (!loading && data) {
+      switch (window.location.pathname) {
+        case `/user/${data.username}`:
+          setBottomNavValue("perfil");
+          break;
+        case `/user/${data.username}/estatisticas`:
+          setBottomNavValue("estatisticas");
+          break;
+        case `/user/${data.username}/historico`:
+          setBottomNavValue("historico");
+          break;
+        case "/conta/exercicios":
+          setBottomNavValue("exercicios");
+          break;
+        default:
+          setBottomNavValue(null);
+          break;
+      }
     }
-  }, [window.location.pathname]);
+  }, [window.location.pathname, loading, data]);
 
   const StyledFab = styled(Fab)({
     position: "absolute",
@@ -54,7 +56,12 @@ export default function SimpleBottomNavigation() {
       sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 1 }}
       elevation={3}
     >
-      <StyledFab color={login ? "primary" : "inherit"} aria-label="add">
+      <StyledFab
+        color={login ? "primary" : "inherit"}
+        aria-label="add"
+        component={RouterLink}
+        to={login ? "/conta/novo-treino" : "/login"}
+      >
         <AddIcon />
       </StyledFab>
 
@@ -68,21 +75,21 @@ export default function SimpleBottomNavigation() {
           label="Perfil"
           value="perfil"
           component={RouterLink}
-          to={login ? "/conta" : "/login"}
+          to={login ? `/user/${data.username}` : "/login"}
           icon={<PersonIcon />}
         />
         <BottomNavigationAction
           label="Estatísticas"
           value="estatisticas"
           component={RouterLink}
-          to={login ? "/estatisticas" : "/login"}
+          to={login ? `/user/${data.username}/estatisticas` : "/login"}
           icon={<InsightsIcon />}
         />
         <BottomNavigationAction
           label="Histórico"
           value="historico"
           component={RouterLink}
-          to={login ? "/historico" : "/login"}
+          to={login ? `/user/${data.username}/historico` : "/login"}
           icon={<HistoryIcon />}
         />
         <BottomNavigationAction

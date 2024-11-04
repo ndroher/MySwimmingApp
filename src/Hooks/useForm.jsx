@@ -21,6 +21,10 @@ const types = {
     message:
       "O nome de exibição deve ter entre 1 e 24 caracteres e deve começar e terminar com uma letra. Números não são permitidos.",
   },
+  number: {
+    regex: /^([1-9][0-9]+|[1-9])$/,
+    message: "Insira um número positivo.",
+  },
 };
 
 const useForm = (type) => {

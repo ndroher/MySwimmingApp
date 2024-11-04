@@ -29,7 +29,7 @@ export const UserStorage = ({ children }) => {
       const { token } = await response.json();
       window.localStorage.setItem("token", token);
       await getUser(token);
-      navigate("/conta");
+      navigate(`/user/${username}`);
     } catch (error) {
       if (error.message === "Error: Forbidden") {
         setError("Dados incorretos.");

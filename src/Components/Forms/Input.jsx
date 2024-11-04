@@ -1,5 +1,6 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const Input = ({
   label,
@@ -11,6 +12,7 @@ const Input = ({
   onBlur,
   fullWidth,
   sx,
+  slotProps,
 }) => {
   return (
     <TextField
@@ -25,6 +27,7 @@ const Input = ({
       helperText={error}
       fullWidth={fullWidth}
       sx={sx}
+      slotProps={slotProps}
     />
   );
 };

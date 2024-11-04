@@ -11,10 +11,10 @@ import { useMediaQuery } from "@mui/material";
 import mainImg from "../../Assets/swimmer-with-equipment-pool-full-shot.jpg";
 
 const Login = () => {
-  const { login } = React.useContext(UserContext);
+  const { login, data } = React.useContext(UserContext);
   const matches = useMediaQuery("(min-width:900px)");
 
-  if (login) return <Navigate to="/conta" />;
+  if (login) return <Navigate to={`/user/${data.username}`} />;
   return (
     <Grid
       container

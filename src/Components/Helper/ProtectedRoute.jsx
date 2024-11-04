@@ -4,9 +4,9 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children }) => {
   const { login } = React.useContext(UserContext);
-  if (login) {
+  if (login === true) {
     return children;
-  } else if (!login) {
+  } else if (login === false) {
     return <Navigate to="/login" />;
   } else {
     return <></>;

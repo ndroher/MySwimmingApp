@@ -4,6 +4,7 @@ import Header from "./Components/Header";
 import BottomNav from "./Components/BottomNav";
 import Home from "./Components/Home";
 import Login from "./Components/Login/Login";
+import Conta from "./Components/User/Conta";
 import User from "./Components/User/User";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserStorage } from "./UserContext";
@@ -26,10 +27,11 @@ function App() {
                 path="conta/*"
                 element={
                   <ProtectedRoute>
-                    <User />
+                    <Conta />
                   </ProtectedRoute>
                 }
               />
+              <Route path="user/*" element={<User />} />
             </Routes>
             <BottomNav />
           </UserStorage>
