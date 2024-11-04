@@ -11,6 +11,7 @@ import { UserStorage } from "./UserContext";
 import { BottomNavValueProvider } from "./BottomNavContext";
 import CssBaseline from "@mui/material/CssBaseline";
 import ProtectedRoute from "./Components/Helper/ProtectedRoute";
+import NotFound from "./Components/NotFound";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
                 }
               />
               <Route path="user/*" element={<User />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
             <BottomNav />
           </UserStorage>

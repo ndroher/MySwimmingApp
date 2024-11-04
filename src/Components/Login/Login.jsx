@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import { useMediaQuery } from "@mui/material";
 import mainImg from "../../Assets/swimmer-with-equipment-pool-full-shot.jpg";
+import NotFound from "../NotFound";
 
 const Login = () => {
   const { login, data } = React.useContext(UserContext);
@@ -46,6 +47,7 @@ const Login = () => {
           <Route path="/criar" element={<LoginCreate />} />
           <Route path="/perdeu" element={<LoginPasswordLost />} />
           <Route path="/resetar" element={<LoginPasswordReset />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Grid>
     </Grid>
