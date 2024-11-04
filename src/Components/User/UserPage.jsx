@@ -15,6 +15,7 @@ import { UserContext } from "../../UserContext";
 import UserInfo from "./UserInfo";
 import TuneIcon from "@mui/icons-material/Tune";
 import Loading from "../Helper/Loading";
+import ErrorPage from "../ErrorPage";
 
 const UserPage = () => {
   const { username } = useParams();
@@ -39,7 +40,7 @@ const UserPage = () => {
     getUserProfileData();
   }, [username]);
 
-  if (error) return <div>Error</div>;
+  if (error) return <ErrorPage />;
   if (loading && userLoading) return <Loading />;
   if (data) {
     const porcentagemSemanal =

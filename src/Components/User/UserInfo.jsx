@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { UserContext } from "../../UserContext";
 import UserInfoLoader from "../Helper/UserInfoLoader";
+import ErrorPage from "../ErrorPage";
 
 const UserInfo = () => {
   const [tabsValue, setTabsValue] = React.useState(0);
@@ -63,7 +64,7 @@ const UserInfo = () => {
     }
   }, [window.location.pathname, loading, data]);
 
-  if (error) return <div>{error}</div>;
+  if (error) return <ErrorPage />;
   if (loading) return <UserInfoLoader />;
   if (data) {
     return (

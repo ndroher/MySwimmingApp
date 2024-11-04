@@ -20,6 +20,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Loading from "../../Helper/Loading";
+import ErrorPage from "../../ErrorPage";
 
 const TreinoInfo = () => {
   const { username, treino_id } = useParams();
@@ -56,7 +57,7 @@ const TreinoInfo = () => {
     excluir();
   };
 
-  if (error) return <div>{error}</div>;
+  if (error) return <ErrorPage />;
   if (loading) return <Loading />;
   if (data) {
     let totalRepeticoes = 0;

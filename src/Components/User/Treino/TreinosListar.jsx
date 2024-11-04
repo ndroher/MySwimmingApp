@@ -25,7 +25,7 @@ const TreinosListar = () => {
     getHistorico();
   }, [update]);
 
-  if (error) return <div>{error}</div>;
+  if (error) return <ErrorPage />;
   if (loading) return <Loading />;
   if (data)
     return (
