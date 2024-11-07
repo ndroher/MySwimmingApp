@@ -114,6 +114,7 @@ const Header = () => {
                 }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
+                disableScrollLock={true}
               >
                 <MenuItem
                   component={RouterLink}

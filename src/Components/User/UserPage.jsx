@@ -16,12 +16,17 @@ import UserInfo from "./UserInfo";
 import TuneIcon from "@mui/icons-material/Tune";
 import Loading from "../Helper/Loading";
 import ErrorPage from "../ErrorPage";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const UserPage = () => {
   const { username } = useParams();
   const { data: userData, loading: userLoading } =
     React.useContext(UserContext);
   const { data, loading, error, request } = useFetch();
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [anchorElMetas, setAnchorElMetas] = React.useState(null);
   const openMenuMetas = Boolean(anchorElMetas);
@@ -126,6 +131,7 @@ const UserPage = () => {
                 MenuListProps={{
                   "aria-labelledby": "metas-button",
                 }}
+                disableScrollLock={isMobile ? false : true}
               >
                 <MenuItem component={RouterLink} to="/conta/alterar-metas">
                   Alterar Metas

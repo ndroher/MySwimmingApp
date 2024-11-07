@@ -15,6 +15,8 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { UserContext } from "../../UserContext";
 import UserInfoLoader from "../Helper/UserInfoLoader";
 import ErrorPage from "../ErrorPage";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const UserInfo = () => {
   const [tabsValue, setTabsValue] = React.useState(0);
@@ -63,6 +65,9 @@ const UserInfo = () => {
       }
     }
   }, [window.location.pathname, loading, data]);
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   if (error) return <ErrorPage />;
   if (loading) return <UserInfoLoader />;
@@ -124,6 +129,7 @@ const UserInfo = () => {
               MenuListProps={{
                 "aria-labelledby": "basic-button",
               }}
+              disableScrollLock={isMobile ? false : true}
             >
               <MenuItem component={RouterLink} to="/conta/alterar-nome">
                 Alterar Nome de Exibição
