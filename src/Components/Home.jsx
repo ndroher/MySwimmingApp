@@ -11,13 +11,17 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Link as RouterLink } from "react-router-dom";
-import Waves from "@mui/icons-material/Waves";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Home = () => {
+  React.useEffect(() => {
+    AOS.init();
+  }, []);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    <Box>
+    <Box sx={{ overflowX: "hidden" }}>
       <Box
         sx={{
           position: "relative",
@@ -93,6 +97,7 @@ const Home = () => {
       />
       <Box sx={{ backgroundColor: "#1976d2" }}>
         <Typography
+          data-aos="fade-down"
           variant={isMobile ? "h4" : "h3"}
           color="#fff"
           textAlign="center"
@@ -194,6 +199,7 @@ const Home = () => {
             }}
           >
             <Box
+              data-aos="fade-left"
               sx={{
                 maxWidth: "50%",
                 position: "relative",
@@ -221,7 +227,7 @@ const Home = () => {
               />
             </Box>
             <Box
-              className="animeLeft"
+              data-aos="fade-right"
               sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
             >
               <Typography
@@ -249,6 +255,7 @@ const Home = () => {
             }}
           >
             <Box
+              data-aos="fade-right"
               sx={{
                 maxWidth: "50%",
                 position: "relative",
@@ -275,7 +282,10 @@ const Home = () => {
                 sx={{ maxWidth: "100%", position: "relative" }}
               />
             </Box>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <Box
+              data-aos="fade-left"
+              sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            >
               <Typography
                 variant={isMobile ? "h4" : "h3"}
                 color="#fff"
@@ -297,6 +307,7 @@ const Home = () => {
       </Box>
       <Box sx={{ backgroundColor: "#1976d2" }}>
         <Typography
+          data-aos="fade-down"
           variant={isMobile ? "h5" : "h3"}
           color="#fff"
           textAlign="center"
@@ -335,6 +346,7 @@ const Home = () => {
           desempenho agora mesmo!
         </Typography>
         <Button
+          data-aos="flip-up"
           component={RouterLink}
           to="/login/criar"
           variant="contained"
