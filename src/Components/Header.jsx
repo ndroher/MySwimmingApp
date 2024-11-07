@@ -37,7 +37,7 @@ const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Box
@@ -61,6 +61,7 @@ const Header = () => {
                 fontWeight: 700,
                 color: "inherit",
                 textDecoration: "none",
+                display: { xs: "none", md: "block" },
               }}
             >
               MySwimmingApp
@@ -83,7 +84,7 @@ const Header = () => {
                   <Typography
                     sx={{
                       mr: 1,
-                      maxWidth: { xs: "10ch", sm: "20ch", md: "none" },
+                      maxWidth: { xs: "30ch", md: "60ch" },
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
