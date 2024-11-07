@@ -16,6 +16,7 @@ const TreinosListar = () => {
   const { username } = useParams();
   const { data, loading, error, request } = useFetch();
   const [update, setUpdate] = React.useState(0);
+  const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
     async function getHistorico() {
@@ -27,7 +28,11 @@ const TreinosListar = () => {
 
   if (error) return <ErrorPage />;
   if (loading) return <Loading />;
-  if (data)
+  if (data) {
+    const treinos = data.filter((exercicio) =>
+      exercicio.nome.toLowerCase().includes(search.toLowerCase())
+    );
+
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
         <UserInfo />
@@ -51,10 +56,13 @@ const TreinosListar = () => {
                 </InputAdornment>
               }
               placeholder="Buscar Treino"
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </FormControl>
         </Box>
-        {data.map((treino) => (
+        {treinos.map((treino) => (
           <Box
             key={treino.id}
             component={RouterLink}
@@ -66,7 +74,7 @@ const TreinosListar = () => {
         ))}
       </Container>
     );
-  else return null;
+  } else return null;
 };
 
 export default TreinosListar;
