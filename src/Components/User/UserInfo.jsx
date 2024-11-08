@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Button from "@mui/material/Button";
+import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -82,6 +84,26 @@ const UserInfo = () => {
             position: "relative",
           }}
         >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "0",
+              left: "0",
+            }}
+          >
+            <Button component={RouterLink} to="/user-search">
+              {isMobile ? (
+                <SearchOutlined sx={{ color: "rgba(0, 0, 0, 0.54)" }} />
+              ) : (
+                <>
+                  <SearchOutlined sx={{ color: "rgba(0, 0, 0, 0.54)" }} />{" "}
+                  <Typography color="textSecondary" variant="subtitle2">
+                    Buscar Usuário
+                  </Typography>
+                </>
+              )}
+            </Button>
+          </Box>
           <Avatar
             alt={data.username}
             src={data.avatar_url}
