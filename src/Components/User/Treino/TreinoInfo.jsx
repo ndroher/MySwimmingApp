@@ -21,6 +21,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
+import EditIcon from "@mui/icons-material/Edit";
 
 const TreinoInfo = () => {
   const { username, treino_id } = useParams();
@@ -96,17 +97,31 @@ const TreinoInfo = () => {
           {userData ? (
             userData.username === username ? (
               <>
-                <Button
-                  size="small"
-                  color="action"
-                  onClick={handleClickOpen}
-                  sx={{
-                    marginLeft: "0px !important",
-                    "&:hover": { color: "#d32f2f" },
-                  }}
-                >
-                  <DeleteIcon />
-                </Button>
+                <Box>
+                  <Button
+                    component={RouterLink}
+                    to={`/conta/treino/editar?id=${treino_id}`}
+                    size="small"
+                    color="action"
+                    sx={{
+                      marginLeft: "0px !important",
+                      "&:hover": { color: "#221c12" },
+                    }}
+                  >
+                    <EditIcon />
+                  </Button>
+                  <Button
+                    size="small"
+                    color="action"
+                    onClick={handleClickOpen}
+                    sx={{
+                      marginLeft: "0px !important",
+                      "&:hover": { color: "#d32f2f" },
+                    }}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Box>
                 <Dialog
                   open={open}
                   onClose={handleClose}

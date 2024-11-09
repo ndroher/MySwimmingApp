@@ -7,6 +7,7 @@ import ExerciciosListar from "./Exercicio/ExerciciosListar";
 import ExercicioCreate from "./Exercicio/ExercicioCreate";
 import ExercicioEdit from "./Exercicio/ExercicioEdit";
 import TreinoCreate from "./Treino/TreinoCreate";
+import TreinoEdit from "./Treino/TreinoEdit";
 
 const Conta = () => {
   return (
@@ -19,6 +20,7 @@ const Conta = () => {
         <Route path="/exercicios/criar" element={<ExercicioCreate />} />
         <Route path="/exercicios/editar" element={<ExercicioEdit />} />
         <Route path="/novo-treino" element={<TreinoCreate />} />
+        <Route path="/treino/editar" element={<TreinoEdit />} />
       </Routes>
     </>
   );

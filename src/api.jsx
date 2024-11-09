@@ -242,6 +242,20 @@ export function TREINO_DELETE(token, id) {
   };
 }
 
+export function TREINO_PUT(body, token, id) {
+  return {
+    url: API_URL + `/api/treino/${id}`,
+    options: {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(body),
+    },
+  };
+}
+
 export function USER_ESTATISTICAS_GET(username) {
   return {
     url: API_URL + `/api/user/${username}/estatisticas`,
