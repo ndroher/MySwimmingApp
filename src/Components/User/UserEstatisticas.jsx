@@ -67,7 +67,7 @@ const UserEstatisticas = () => {
     Peito: "#7b1fa2",
   };
 
-  if (error || exercicioLoading) return <ErrorPage />;
+  if (error || exercicioError) return <ErrorPage />;
   if (loading || exercicioLoading) return <Loading />;
   if (data && exercicioData) {
     const nados = Object.entries(data.repeticoes_por_tipo_de_nado).map(
