@@ -17,6 +17,7 @@ const NotFound = () => {
         justifyContent: "center",
         alignItems: "center",
         marginTop: "20vh",
+        textAlign: "center",
       }}
     >
       <Typography variant="h1">404</Typography>
