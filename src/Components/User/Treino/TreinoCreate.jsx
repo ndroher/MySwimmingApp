@@ -258,9 +258,11 @@ const TreinoCreate = () => {
   const [open, setOpen] = React.useState(false);
   const [field, setField] = React.useState("");
   const [selectedValue, setSelectedValue] = React.useState(0);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  const handleClickOpen = (field) => {
+  const handleClickOpen = (index, field) => {
     setField(field);
+    setSelectedIndex(index);
     setOpen(true);
   };
 
@@ -415,7 +417,7 @@ const TreinoCreate = () => {
                   </CardContent>
                   <CardActions>
                     <Button
-                      onClick={() => handleClickOpen("exercicio_ida")}
+                      onClick={() => handleClickOpen(index, "exercicio_ida")}
                       sx={{ width: { xs: "100%", md: "auto" } }}
                     >
                       Alterar Exercício
@@ -446,7 +448,7 @@ const TreinoCreate = () => {
                   </CardContent>
                   <CardActions>
                     <Button
-                      onClick={() => handleClickOpen("exercicio_ida")}
+                      onClick={() => handleClickOpen(index, "exercicio_ida")}
                       sx={{ width: { xs: "100%", md: "auto" } }}
                     >
                       Adicionar Exercício
@@ -461,7 +463,7 @@ const TreinoCreate = () => {
                 exerciciosData={exerciciosData}
                 exerciciosLoading={exerciciosLoading}
                 exerciciosError={exerciciosError}
-                index={index}
+                index={selectedIndex}
                 field={field}
               />
             </Box>
@@ -529,7 +531,7 @@ const TreinoCreate = () => {
                   </CardContent>
                   <CardActions>
                     <Button
-                      onClick={() => handleClickOpen("exercicio_volta")}
+                      onClick={() => handleClickOpen(index, "exercicio_volta")}
                       sx={{ width: { xs: "100%", md: "auto" } }}
                     >
                       Alterar Exercício
@@ -560,7 +562,7 @@ const TreinoCreate = () => {
                   </CardContent>
                   <CardActions>
                     <Button
-                      onClick={() => handleClickOpen("exercicio_volta")}
+                      onClick={() => handleClickOpen(index, "exercicio_volta")}
                       sx={{ width: { xs: "100%", md: "auto" } }}
                     >
                       Adicionar Exercício
@@ -575,7 +577,7 @@ const TreinoCreate = () => {
                 exerciciosData={exerciciosData}
                 exerciciosLoading={exerciciosLoading}
                 exerciciosError={exerciciosError}
-                index={index}
+                index={selectedIndex}
                 field={field}
               />
             </Box>
