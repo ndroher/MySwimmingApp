@@ -8,11 +8,17 @@ import { useParams } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
+import Button from "@mui/material/Button";
+import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { UserContext } from "../../UserContext";
+import UserInfoLoader from "../Helper/UserInfoLoader";
+import ErrorPage from "../ErrorPage";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const UserInfo = () => {
   const [tabsValue, setTabsValue] = React.useState(0);
@@ -62,6 +68,11 @@ const UserInfo = () => {
     }
   }, [window.location.pathname, loading, data]);
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  if (error) return <ErrorPage />;
+  if (loading) return <UserInfoLoader />;
   if (data) {
     return (
       <>
@@ -73,6 +84,26 @@ const UserInfo = () => {
             position: "relative",
           }}
         >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "0",
+              left: "0",
+            }}
+          >
+            <Button component={RouterLink} to="/user-search">
+              {isMobile ? (
+                <SearchOutlined sx={{ color: "rgba(0, 0, 0, 0.54)" }} />
+              ) : (
+                <>
+                  <SearchOutlined sx={{ color: "rgba(0, 0, 0, 0.54)" }} />{" "}
+                  <Typography color="textSecondary" variant="subtitle2">
+                    Buscar Usuário
+                  </Typography>
+                </>
+              )}
+            </Button>
+          </Box>
           <Avatar
             alt={data.username}
             src={data.avatar_url}
@@ -120,6 +151,7 @@ const UserInfo = () => {
               MenuListProps={{
                 "aria-labelledby": "basic-button",
               }}
+              disableScrollLock={isMobile ? false : true}
             >
               <MenuItem component={RouterLink} to="/conta/alterar-nome">
                 Alterar Nome de Exibição

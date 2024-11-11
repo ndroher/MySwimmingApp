@@ -37,6 +37,15 @@ export function USER_GET(token) {
   };
 }
 
+export function USERS_GET() {
+  return {
+    url: API_URL + "/api/users",
+    options: {
+      method: "GET",
+    },
+  };
+}
+
 export function USER_POST(body) {
   return {
     url: API_URL + "/api/user",
@@ -229,6 +238,20 @@ export function TREINO_DELETE(token, id) {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
+    },
+  };
+}
+
+export function TREINO_PUT(body, token, id) {
+  return {
+    url: API_URL + `/api/treino/${id}`,
+    options: {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(body),
     },
   };
 }

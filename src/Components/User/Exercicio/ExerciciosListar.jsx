@@ -12,9 +12,12 @@ import Container from "@mui/material/Container";
 import ExercicioItem from "./ExercicioItem";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import Waves from "@mui/icons-material/Waves";
+import Loading from "../../Helper/Loading";
+import ErrorPage from "../../ErrorPage";
 const Exercicios = () => {
   const { data, loading, error, request } = useFetch();
   const [update, setUpdate] = React.useState(0);
+  const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
     async function getExercicios() {
@@ -25,9 +28,12 @@ const Exercicios = () => {
     getExercicios();
   }, [update]);
 
-  if (error) return <div>Error</div>;
-  if (loading) return <div>Loading</div>;
-  if (data)
+  if (error) return <ErrorPage />;
+  if (loading) return <Loading />;
+  if (data) {
+    const exercicios = data.filter((exercicio) =>
+      exercicio.nome.toLowerCase().includes(search.toLowerCase())
+    );
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
         <Typography
@@ -70,6 +76,9 @@ const Exercicios = () => {
                 </InputAdornment>
               }
               placeholder="Buscar Exercício"
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </FormControl>
           <Button
@@ -84,7 +93,7 @@ const Exercicios = () => {
             Adicionar Novo Exercício
           </Button>
         </Box>
-        {data.map((exercicio) => (
+        {exercicios.map((exercicio) => (
           <ExercicioItem
             key={exercicio.id}
             exercicio={exercicio}
@@ -93,7 +102,7 @@ const Exercicios = () => {
         ))}
       </Container>
     );
-  else return null;
+  } else return null;
 };
 
 export default Exercicios;

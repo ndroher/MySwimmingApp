@@ -10,11 +10,13 @@ import Container from "@mui/material/Container";
 import TreinoItem from "./TreinoItem";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import UserInfo from "../UserInfo";
+import Loading from "../../Helper/Loading";
 
 const TreinosListar = () => {
   const { username } = useParams();
   const { data, loading, error, request } = useFetch();
   const [update, setUpdate] = React.useState(0);
+  const [search, setSearch] = React.useState("");
 
   React.useEffect(() => {
     async function getHistorico() {
@@ -24,9 +26,13 @@ const TreinosListar = () => {
     getHistorico();
   }, [update]);
 
-  if (error) return <div>{error}</div>;
-  if (loading) return <div>Loading</div>;
-  if (data)
+  if (error) return <ErrorPage />;
+  if (loading) return <Loading />;
+  if (data) {
+    const treinos = data.filter((exercicio) =>
+      exercicio.nome.toLowerCase().includes(search.toLowerCase())
+    );
+
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
         <UserInfo />
@@ -50,10 +56,13 @@ const TreinosListar = () => {
                 </InputAdornment>
               }
               placeholder="Buscar Treino"
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </FormControl>
         </Box>
-        {data.map((treino) => (
+        {treinos.map((treino) => (
           <Box
             key={treino.id}
             component={RouterLink}
@@ -65,7 +74,7 @@ const TreinosListar = () => {
         ))}
       </Container>
     );
-  else return null;
+  } else return null;
 };
 
 export default TreinosListar;

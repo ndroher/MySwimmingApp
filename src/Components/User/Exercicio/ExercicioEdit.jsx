@@ -11,6 +11,8 @@ import useForm from "../../../Hooks/useForm";
 import useFetch from "../../../Hooks/useFetch";
 import { EXERCICIO_GET, EXERCICIO_PUT } from "../../../api";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Loading from "../../Helper/Loading";
+import ErrorPage from "../../ErrorPage";
 
 const ExercicioEdit = () => {
   const nome_exercicio = useForm();
@@ -33,8 +35,7 @@ const ExercicioEdit = () => {
 
   React.useEffect(() => {
     async function getExercicio() {
-      const token = window.localStorage.getItem("token");
-      const { url, options } = EXERCICIO_GET(token, searchParams.get("id"));
+      const { url, options } = EXERCICIO_GET(searchParams.get("id"));
       const { response, json } = await request(url, options);
     }
     getExercicio();
@@ -91,8 +92,8 @@ const ExercicioEdit = () => {
     }
   }
 
-  if (error) return <div>Error</div>;
-  if (loading) return <div>Loading</div>;
+  if (error) return <ErrorPage />;
+  if (loading) return <Loading />;
   if (data)
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>

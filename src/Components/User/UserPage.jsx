@@ -14,12 +14,19 @@ import MenuItem from "@mui/material/MenuItem";
 import { UserContext } from "../../UserContext";
 import UserInfo from "./UserInfo";
 import TuneIcon from "@mui/icons-material/Tune";
+import Loading from "../Helper/Loading";
+import ErrorPage from "../ErrorPage";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const UserPage = () => {
   const { username } = useParams();
   const { data: userData, loading: userLoading } =
     React.useContext(UserContext);
   const { data, loading, error, request } = useFetch();
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const [anchorElMetas, setAnchorElMetas] = React.useState(null);
   const openMenuMetas = Boolean(anchorElMetas);
@@ -38,8 +45,8 @@ const UserPage = () => {
     getUserProfileData();
   }, [username]);
 
-  if (error) return <div>Error</div>;
-  if (loading && userLoading) return <div>Loading</div>;
+  if (error) return <ErrorPage />;
+  if (loading && userLoading) return <Loading />;
   if (data) {
     const porcentagemSemanal =
       (Number(data.goals.weekly_progress) / Number(data.goals.weekly_goal)) *
@@ -124,6 +131,7 @@ const UserPage = () => {
                 MenuListProps={{
                   "aria-labelledby": "metas-button",
                 }}
+                disableScrollLock={isMobile ? false : true}
               >
                 <MenuItem component={RouterLink} to="/conta/alterar-metas">
                   Alterar Metas

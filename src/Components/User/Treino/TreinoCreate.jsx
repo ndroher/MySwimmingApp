@@ -128,8 +128,8 @@ const TreinoCreate = () => {
     setChegadas([
       ...chegadas,
       {
-        exercicio_ida: { id: "", nome: "" },
-        exercicio_volta: { id: "", nome: "" },
+        exercicio_ida: { id: "", nome: "", tipo_nado: "", equipamentos: "" },
+        exercicio_volta: { id: "", nome: "", tipo_nado: "", equipamentos: "" },
         repeticoes: "",
       },
     ]);
@@ -258,9 +258,11 @@ const TreinoCreate = () => {
   const [open, setOpen] = React.useState(false);
   const [field, setField] = React.useState("");
   const [selectedValue, setSelectedValue] = React.useState(0);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  const handleClickOpen = (field) => {
+  const handleClickOpen = (index, field) => {
     setField(field);
+    setSelectedIndex(index);
     setOpen(true);
   };
 
@@ -270,7 +272,12 @@ const TreinoCreate = () => {
       const updatedChegadas = [...prevChegadas];
       updatedChegadas[index] = {
         ...updatedChegadas[index],
-        [field]: { id: parseInt(value.id, 10), nome: value.nome },
+        [field]: {
+          id: parseInt(value.id, 10),
+          nome: value.nome,
+          tipo_nado: value.tipo_nado,
+          equipamentos: value.equipamentos,
+        },
       };
       return updatedChegadas;
     });
@@ -377,14 +384,40 @@ const TreinoCreate = () => {
                   }}
                 >
                   <CardContent>
+                    <Typography
+                      variant="caption"
+                      color="textSecondary"
+                      sx={{ my: 1 }}
+                    >
+                      Ida
+                    </Typography>
                     <Typography variant="h6">
                       {chegada.exercicio_ida.nome}
                     </Typography>
-                    <Typography color="textSecondary">Ida</Typography>
+                    <Box sx={{ display: "flex" }}>
+                      {chegada.exercicio_ida.tipo_nado.map((tipo_nado) => (
+                        <Typography
+                          key={tipo_nado}
+                          color="textSecondary"
+                          sx={{ mr: 1 }}
+                        >
+                          {tipo_nado}
+                        </Typography>
+                      ))}
+                    </Box>
+                    <Box sx={{ mt: 1 }}>
+                      {chegada.exercicio_ida.equipamentos.map((equipamento) => (
+                        <Chip
+                          key={equipamento}
+                          label={equipamento}
+                          sx={{ mr: 1 }}
+                        />
+                      ))}
+                    </Box>
                   </CardContent>
                   <CardActions>
                     <Button
-                      onClick={() => handleClickOpen("exercicio_ida")}
+                      onClick={() => handleClickOpen(index, "exercicio_ida")}
                       sx={{ width: { xs: "100%", md: "auto" } }}
                     >
                       Alterar Exercício
@@ -402,14 +435,20 @@ const TreinoCreate = () => {
                   }}
                 >
                   <CardContent>
+                    <Typography
+                      variant="caption"
+                      color="textSecondary"
+                      sx={{ my: 1 }}
+                    >
+                      Ida
+                    </Typography>
                     <Typography variant="h6" color="textSecondary">
                       Selecione um Exercício
                     </Typography>
-                    <Typography color="textSecondary">Ida</Typography>
                   </CardContent>
                   <CardActions>
                     <Button
-                      onClick={() => handleClickOpen("exercicio_ida")}
+                      onClick={() => handleClickOpen(index, "exercicio_ida")}
                       sx={{ width: { xs: "100%", md: "auto" } }}
                     >
                       Adicionar Exercício
@@ -424,7 +463,7 @@ const TreinoCreate = () => {
                 exerciciosData={exerciciosData}
                 exerciciosLoading={exerciciosLoading}
                 exerciciosError={exerciciosError}
-                index={index}
+                index={selectedIndex}
                 field={field}
               />
             </Box>
@@ -457,14 +496,42 @@ const TreinoCreate = () => {
                   }}
                 >
                   <CardContent>
+                    <Typography
+                      variant="caption"
+                      color="textSecondary"
+                      sx={{ my: 1 }}
+                    >
+                      Ida
+                    </Typography>
                     <Typography variant="h6">
                       {chegada.exercicio_volta.nome}
                     </Typography>
-                    <Typography color="textSecondary">Volta</Typography>
+                    <Box sx={{ display: "flex" }}>
+                      {chegada.exercicio_volta.tipo_nado.map((tipo_nado) => (
+                        <Typography
+                          key={tipo_nado}
+                          color="textSecondary"
+                          sx={{ mr: 1 }}
+                        >
+                          {tipo_nado}
+                        </Typography>
+                      ))}
+                    </Box>
+                    <Box sx={{ mt: 1 }}>
+                      {chegada.exercicio_volta.equipamentos.map(
+                        (equipamento) => (
+                          <Chip
+                            key={equipamento}
+                            label={equipamento}
+                            sx={{ mr: 1 }}
+                          />
+                        )
+                      )}
+                    </Box>
                   </CardContent>
                   <CardActions>
                     <Button
-                      onClick={() => handleClickOpen("exercicio_volta")}
+                      onClick={() => handleClickOpen(index, "exercicio_volta")}
                       sx={{ width: { xs: "100%", md: "auto" } }}
                     >
                       Alterar Exercício
@@ -482,14 +549,20 @@ const TreinoCreate = () => {
                   }}
                 >
                   <CardContent>
+                    <Typography
+                      variant="caption"
+                      color="textSecondary"
+                      sx={{ my: 1 }}
+                    >
+                      Volta
+                    </Typography>
                     <Typography variant="h6" color="textSecondary">
                       Selecione um Exercício
                     </Typography>
-                    <Typography color="textSecondary">Volta</Typography>
                   </CardContent>
                   <CardActions>
                     <Button
-                      onClick={() => handleClickOpen("exercicio_volta")}
+                      onClick={() => handleClickOpen(index, "exercicio_volta")}
                       sx={{ width: { xs: "100%", md: "auto" } }}
                     >
                       Adicionar Exercício
@@ -504,7 +577,7 @@ const TreinoCreate = () => {
                 exerciciosData={exerciciosData}
                 exerciciosLoading={exerciciosLoading}
                 exerciciosError={exerciciosError}
-                index={index}
+                index={selectedIndex}
                 field={field}
               />
             </Box>

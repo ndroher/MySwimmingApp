@@ -4,6 +4,7 @@ import UserPage from "./UserPage";
 import Historico from "./Treino/TreinosListar";
 import TreinoInfo from "./Treino/TreinoInfo";
 import UserEstatisticas from "./UserEstatisticas";
+import NotFound from "../NotFound";
 
 const User = () => {
   return (
@@ -13,6 +14,7 @@ const User = () => {
         <Route path="/:username/estatisticas" element={<UserEstatisticas />} />
         <Route path="/:username/historico" element={<Historico />} />
         <Route path="/:username/treino/:treino_id" element={<TreinoInfo />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

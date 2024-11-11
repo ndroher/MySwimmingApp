@@ -16,6 +16,8 @@ import { styled } from "@mui/material/styles";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { axisClasses } from "@mui/x-charts/ChartsAxis";
 import { LineChart } from "@mui/x-charts/LineChart";
+import Loading from "../Helper/Loading";
+import ErrorPage from "../ErrorPage";
 
 //Tipos de nado
 const StyledText = styled("text")(({ theme }) => ({
@@ -65,8 +67,8 @@ const UserEstatisticas = () => {
     Peito: "#7b1fa2",
   };
 
-  if (error || exercicioLoading) return <div>{error}</div>;
-  if (loading || exercicioLoading) return <div>Loading</div>;
+  if (error || exercicioError) return <ErrorPage />;
+  if (loading || exercicioLoading) return <Loading />;
   if (data && exercicioData) {
     const nados = Object.entries(data.repeticoes_por_tipo_de_nado).map(
       ([label, value]) => ({

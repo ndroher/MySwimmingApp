@@ -19,6 +19,9 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Loading from "../../Helper/Loading";
+import ErrorPage from "../../ErrorPage";
+import EditIcon from "@mui/icons-material/Edit";
 
 const TreinoInfo = () => {
   const { username, treino_id } = useParams();
@@ -55,8 +58,8 @@ const TreinoInfo = () => {
     excluir();
   };
 
-  if (error) return <div>{error}</div>;
-  if (loading) return <div>Loading</div>;
+  if (error) return <ErrorPage />;
+  if (loading) return <Loading />;
   if (data) {
     let totalRepeticoes = 0;
     Object.keys(data.repeticoes_por_tipo_de_nado).map(
@@ -94,17 +97,31 @@ const TreinoInfo = () => {
           {userData ? (
             userData.username === username ? (
               <>
-                <Button
-                  size="small"
-                  color="action"
-                  onClick={handleClickOpen}
-                  sx={{
-                    marginLeft: "0px !important",
-                    "&:hover": { color: "#d32f2f" },
-                  }}
-                >
-                  <DeleteIcon />
-                </Button>
+                <Box>
+                  <Button
+                    component={RouterLink}
+                    to={`/conta/treino/editar?id=${treino_id}`}
+                    size="small"
+                    color="action"
+                    sx={{
+                      marginLeft: "0px !important",
+                      "&:hover": { color: "#221c12" },
+                    }}
+                  >
+                    <EditIcon />
+                  </Button>
+                  <Button
+                    size="small"
+                    color="action"
+                    onClick={handleClickOpen}
+                    sx={{
+                      marginLeft: "0px !important",
+                      "&:hover": { color: "#d32f2f" },
+                    }}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Box>
                 <Dialog
                   open={open}
                   onClose={handleClose}
