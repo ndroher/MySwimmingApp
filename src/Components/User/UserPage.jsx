@@ -60,41 +60,23 @@ const UserPage = () => {
 
     const WeeklyBar = styled("div")({
       backgroundColor: "rgb(77, 171, 245)",
-      width: "0%",
+      width: `${porcentagemSemanal <= 100 ? porcentagemSemanal : 100}%`,
       height: "100%",
       borderRadius: "1rem",
-      animation: "WeeklyBar 0.5s forwards",
-      "@keyframes WeeklyBar": {
-        to: {
-          width: `${porcentagemSemanal <= 100 ? porcentagemSemanal : 100}%`,
-        },
-      },
     });
 
     const MonthlyBar = styled("div")({
       backgroundColor: "#2196f3",
-      width: "0%",
+      width: `${porcentagemMensal <= 100 ? porcentagemMensal : 100}%`,
       height: "100%",
       borderRadius: "1rem",
-      animation: "MonthlyBar 0.5s forwards",
-      "@keyframes MonthlyBar": {
-        to: {
-          width: `${porcentagemMensal <= 100 ? porcentagemMensal : 100}%`,
-        },
-      },
     });
 
     const YearlyBar = styled("div")({
       backgroundColor: "rgb(23, 105, 170)",
-      width: "0%",
+      width: `${porcentagemAnual <= 100 ? porcentagemAnual : 100}%`,
       height: "100%",
       borderRadius: "1rem",
-      animation: "YearlyBar 0.5s forwards",
-      "@keyframes YearlyBar": {
-        to: {
-          width: `${porcentagemAnual <= 100 ? porcentagemAnual : 100}%`,
-        },
-      },
     });
 
     return (

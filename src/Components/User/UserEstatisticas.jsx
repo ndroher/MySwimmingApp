@@ -53,10 +53,12 @@ const UserEstatisticas = () => {
       return json;
     }
     getEstatisticas().then(async function getExercicio(result) {
-      const { url, options } = EXERCICIO_GET(
-        result.exercicio_mais_realizado_id
-      );
-      const { response, json } = await exercicioRequest(url, options);
+      if (result.exercicio_mais_realizado_id !== null) {
+        const { url, options } = EXERCICIO_GET(
+          result.exercicio_mais_realizado_id
+        );
+        const { response, json } = await exercicioRequest(url, options);
+      }
     });
   }, []);
 
@@ -69,7 +71,7 @@ const UserEstatisticas = () => {
 
   if (error || exercicioError) return <ErrorPage />;
   if (loading || exercicioLoading) return <Loading />;
-  if (data && exercicioData) {
+  if (data) {
     const nados = Object.entries(data.repeticoes_por_tipo_de_nado).map(
       ([label, value]) => ({
         label,
@@ -125,36 +127,38 @@ const UserEstatisticas = () => {
             )}
           </Paper>
 
-          <Box sx={{ my: 3 }}>
-            <Typography variant="h5" sx={{ my: 2 }}>
-              Exercício mais realizado
-            </Typography>
-            <Card variant="outlined">
-              <CardContent>
-                <Typography variant="h6">{exercicioData.nome}</Typography>
-                <Box sx={{ display: "flex" }}>
-                  {exercicioData.tipo_nado.map((tipo_nado) => (
-                    <Typography
-                      key={tipo_nado}
-                      color="textSecondary"
-                      sx={{ mr: 1 }}
-                    >
-                      {tipo_nado}
-                    </Typography>
-                  ))}
-                </Box>
-                <Box sx={{ mt: 1 }}>
-                  {exercicioData.equipamentos.map((equipamento) => (
-                    <Chip
-                      key={equipamento}
-                      label={equipamento}
-                      sx={{ mr: 1 }}
-                    />
-                  ))}
-                </Box>
-              </CardContent>
-            </Card>
-          </Box>
+          {exercicioData ? (
+            <Box sx={{ my: 3 }}>
+              <Typography variant="h5" sx={{ my: 2 }}>
+                Exercício mais realizado
+              </Typography>
+              <Card variant="outlined">
+                <CardContent>
+                  <Typography variant="h6">{exercicioData.nome}</Typography>
+                  <Box sx={{ display: "flex" }}>
+                    {exercicioData.tipo_nado.map((tipo_nado) => (
+                      <Typography
+                        key={tipo_nado}
+                        color="textSecondary"
+                        sx={{ mr: 1 }}
+                      >
+                        {tipo_nado}
+                      </Typography>
+                    ))}
+                  </Box>
+                  <Box sx={{ mt: 1 }}>
+                    {exercicioData.equipamentos.map((equipamento) => (
+                      <Chip
+                        key={equipamento}
+                        label={equipamento}
+                        sx={{ mr: 1 }}
+                      />
+                    ))}
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+          ) : null}
 
           <Box>
             <Typography variant="h5" sx={{ my: 2 }}>
