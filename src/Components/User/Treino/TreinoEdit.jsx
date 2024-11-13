@@ -63,7 +63,7 @@ function SimpleDialog(props) {
           {exerciciosError && <ListItem>Erro ao carregar dados.</ListItem>}
           {exerciciosData &&
             exerciciosData.map((exercicio, exercicioIndex) => (
-              <Box key={exercicio.id}>
+              <Box key={exercicio.id} sx={{ minWidth: "25rem" }}>
                 <ListItem disableGutters>
                   <ListItemButton
                     onClick={() => handleListItemClick(index, field, exercicio)}
