@@ -13,6 +13,7 @@ import { EXERCICIO_GET, EXERCICIO_PUT } from "../../../api";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
+import OfflinePage from "../../OfflinePage";
 
 const ExercicioEdit = () => {
   const nome_exercicio = useForm();
@@ -92,7 +93,7 @@ const ExercicioEdit = () => {
     }
   }
 
-  if (error) return <ErrorPage />;
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   if (loading) return <Loading />;
   if (data)
     return (

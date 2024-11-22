@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import Loading from "../Helper/Loading";
 import ErrorPage from "../ErrorPage";
+import OfflinePage from "../OfflinePage";
 
 const ChangeGoals = () => {
   const meta_semanal = useForm("number");
@@ -62,7 +63,7 @@ const ChangeGoals = () => {
     }
   }
 
-  if (error) return <ErrorPage />;
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   if (loading) return <Loading />;
   if (data)
     return (

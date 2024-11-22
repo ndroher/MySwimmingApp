@@ -16,10 +16,12 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useFetch from "../../../Hooks/useFetch";
 import { EXERCICIO_DELETE } from "../../../api";
+import { useNavigate } from "react-router-dom";
 
 const ExercicioItem = ({ exercicio, setUpdate }) => {
   const { data, loading, error, request } = useFetch();
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,6 +40,7 @@ const ExercicioItem = ({ exercicio, setUpdate }) => {
     }
     excluir();
     handleClose();
+    if (!navigator.onLine) navigate("/offline");
   };
 
   return (

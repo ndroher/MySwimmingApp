@@ -11,6 +11,8 @@ import TreinoItem from "./TreinoItem";
 import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import UserInfo from "../UserInfo";
 import Loading from "../../Helper/Loading";
+import ErrorPage from "../../ErrorPage";
+import OfflinePage from "../../OfflinePage";
 
 const TreinosListar = () => {
   const { username } = useParams();
@@ -26,7 +28,7 @@ const TreinosListar = () => {
     getHistorico();
   }, [update]);
 
-  if (error) return <ErrorPage />;
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   if (loading) return <Loading />;
   if (data) {
     const treinos = data.filter((exercicio) =>

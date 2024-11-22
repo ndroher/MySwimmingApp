@@ -11,6 +11,8 @@ import useForm from "../../../Hooks/useForm";
 import useFetch from "../../../Hooks/useFetch";
 import { EXERCICIO_POST } from "../../../api";
 import { useNavigate } from "react-router-dom";
+import ErrorPage from "../../ErrorPage";
+import OfflinePage from "../../OfflinePage";
 
 const ExercicioCreate = () => {
   const nome_exercicio = useForm();
@@ -64,6 +66,8 @@ const ExercicioCreate = () => {
       if (response.ok) navigate("/conta/exercicios");
     }
   }
+
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
       <Typography

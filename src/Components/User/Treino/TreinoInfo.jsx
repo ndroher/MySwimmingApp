@@ -21,6 +21,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
+import OfflinePage from "../../OfflinePage";
 import EditIcon from "@mui/icons-material/Edit";
 
 const TreinoInfo = () => {
@@ -58,7 +59,7 @@ const TreinoInfo = () => {
     excluir();
   };
 
-  if (error) return <ErrorPage />;
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   if (loading) return <Loading />;
   if (data) {
     let totalRepeticoes = 0;

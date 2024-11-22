@@ -16,6 +16,7 @@ import UserInfo from "./UserInfo";
 import TuneIcon from "@mui/icons-material/Tune";
 import Loading from "../Helper/Loading";
 import ErrorPage from "../ErrorPage";
+import OfflinePage from "../OfflinePage";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -45,7 +46,7 @@ const UserPage = () => {
     getUserProfileData();
   }, [username]);
 
-  if (error) return <ErrorPage />;
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   if (loading && userLoading) return <Loading />;
   if (data) {
     const porcentagemSemanal =

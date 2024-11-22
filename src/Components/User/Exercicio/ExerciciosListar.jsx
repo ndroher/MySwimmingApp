@@ -14,6 +14,8 @@ import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import Waves from "@mui/icons-material/Waves";
 import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
+import OfflinePage from "../../OfflinePage";
+
 const Exercicios = () => {
   const { data, loading, error, request } = useFetch();
   const [update, setUpdate] = React.useState(0);
@@ -28,7 +30,7 @@ const Exercicios = () => {
     getExercicios();
   }, [update]);
 
-  if (error) return <ErrorPage />;
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   if (loading) return <Loading />;
   if (data) {
     const exercicios = data.filter((exercicio) =>

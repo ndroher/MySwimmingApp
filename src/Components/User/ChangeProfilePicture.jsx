@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Waves from "@mui/icons-material/Waves";
 import { UserContext } from "../../UserContext";
+import ErrorPage from "../ErrorPage";
+import OfflinePage from "../OfflinePage";
 
 const ChangeProfilePicture = () => {
   const { data } = React.useContext(UserContext);
@@ -35,6 +37,7 @@ const ChangeProfilePicture = () => {
     });
   }
 
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
       <Typography

@@ -29,6 +29,7 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
+import OfflinePage from "../../OfflinePage";
 
 function SimpleDialog(props) {
   const {
@@ -332,7 +333,8 @@ const TreinoEdit = () => {
     }
   }, [treinoData]);
 
-  if (error || treinoError) return <ErrorPage />;
+  if (error || treinoError)
+    return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   if (loading || treinoLoading) return <Loading />;
   if (data && treinoData && exerciciosData) {
     return (
