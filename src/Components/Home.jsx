@@ -1,11 +1,11 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import video from "../Assets/swimming-video.mp4";
-import mockup1 from "../Assets/mockup1.png";
-import mockup2 from "../Assets/mockup2.png";
-import waveDivider from "../Assets/wave-divider.svg";
-import waveDivider2 from "../Assets/wave-divider2.svg";
+import video from "/assets/swimming-video.mp4";
+import mockup1 from "/assets/mockup1.png";
+import mockup2 from "/assets/mockup2.png";
+import waveDivider from "/assets/wave-divider.svg";
+import waveDivider2 from "/assets/wave-divider2.svg";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";

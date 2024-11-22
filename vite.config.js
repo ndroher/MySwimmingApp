@@ -10,13 +10,16 @@ export default defineConfig({
       registerType: "autoUpdate",
       devOptions: {
         enabled: true,
+        type: "module",
       },
       strategies: "injectManifest",
-      srcDir: "src",
-      filename: "sw.js",
       injectManifest: {
-        swDest: "sw.js",
+        swDest: "dist/sw.js",
       },
+      workbox: {
+        globPatterns: ["**/*"],
+      },
+      includeAssets: ["**/*"],
       manifest: {
         name: "MySwimmingApp",
         short_name: "MySwimmingApp",
@@ -32,25 +35,25 @@ export default defineConfig({
         orientation: "portrait-primary",
         icons: [
           {
-            src: "/pwa-192x192.png",
+            src: "/icons/pwa-192x192.png",
             sizes: "192x192",
             type: "image/png",
             purpose: "any",
           },
           {
-            src: "/pwa-512x512.png",
+            src: "/icons/pwa-512x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "any",
           },
           {
-            src: "/pwa-maskable-192x192.png",
+            src: "/icons/pwa-maskable-192x192.png",
             sizes: "192x192",
             type: "image/png",
             purpose: "maskable",
           },
           {
-            src: "/pwa-maskable-512x512.png",
+            src: "/icons/pwa-maskable-512x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "maskable",
@@ -58,28 +61,28 @@ export default defineConfig({
         ],
         screenshots: [
           {
-            src: "../src/Assets/screenshot-desktop1.png",
+            src: "/assets/screenshot-desktop1.png",
             sizes: "1440x917",
             type: "image/png",
             form_factor: "wide",
             label: "Monitoramento de Treinos",
           },
           {
-            src: "../src/Assets/screenshot-desktop2.png",
+            src: "/assets/screenshot-desktop2.png",
             sizes: "1440x917",
             type: "image/png",
             form_factor: "wide",
             label: "Monitoramento de Estatísticas",
           },
           {
-            src: "../src/Assets/screenshot-mobile1.png",
+            src: "/assets/screenshot-mobile1.png",
             sizes: "375x812",
             type: "image/png",
             form_factor: "narrow",
             label: "Monitoramento de Treinos",
           },
           {
-            src: "../src/Assets/screenshot-mobile2.png",
+            src: "/assets/screenshot-mobile2.png",
             sizes: "375x812",
             type: "image/png",
             form_factor: "narrow",

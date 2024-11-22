@@ -8,7 +8,7 @@ import { UserContext } from "../../UserContext";
 import Grid from "@mui/material/Grid2";
 import Box from "@mui/material/Box";
 import { useMediaQuery } from "@mui/material";
-import mainImg from "../../Assets/swimmer-with-equipment-pool-full-shot.jpg";
+import mainImg from "/assets/swimmer-with-equipment-pool-full-shot.jpg";
 import NotFound from "../NotFound";
 
 const Login = () => {
