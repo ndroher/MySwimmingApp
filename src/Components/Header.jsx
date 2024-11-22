@@ -18,6 +18,7 @@ import PoolIcon from "@mui/icons-material/Pool";
 import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Avatar from "@mui/material/Avatar";
+import CloudOffIcon from "@mui/icons-material/CloudOff";
 
 const Header = () => {
   const { data, userLogout } = React.useContext(UserContext);
@@ -38,6 +39,24 @@ const Header = () => {
 
   return (
     <AppBar position="sticky">
+      {!navigator.onLine && (
+        <Box sx={{ backgroundColor: "#b8b8b8", py: 1 }}>
+          <Container maxWidth="lg">
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              gap="1rem"
+            >
+              <CloudOffIcon />
+              <Typography>
+                Você está offline! Verifique sua conexão para acessar todos os
+                recursos.
+              </Typography>
+            </Box>
+          </Container>
+        </Box>
+      )}
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Box
