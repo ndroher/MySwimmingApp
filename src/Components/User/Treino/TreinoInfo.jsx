@@ -23,6 +23,15 @@ import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
 import OfflinePage from "../../OfflinePage";
 import EditIcon from "@mui/icons-material/Edit";
+import ShareIcon from "@mui/icons-material/Share";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const TreinoInfo = () => {
   const { username, treino_id } = useParams();
@@ -59,6 +68,49 @@ const TreinoInfo = () => {
     excluir();
   };
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const openMenu = Boolean(anchorEl);
+  const handleClickMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const [openSnackBar, setOpenSnackBar] = React.useState(false);
+
+  const handleClickSnackBar = () => {
+    setOpenSnackBar(true);
+  };
+
+  const handleCloseSnackBar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackBar(false);
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: "MySwimmingApp",
+        text: "Checa só esse treino de natação registrado no MySwimmingApp!",
+        url: window.location.href,
+      });
+    } else {
+      navigator.clipboard.writeText(
+        "Checa só esse treino de natação registrado no MySwimmingApp! " +
+          window.location.href
+      );
+      setOpenSnackBar(true);
+    }
+    handleCloseMenu();
+  };
+
   if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   if (loading) return <Loading />;
   if (data) {
@@ -75,6 +127,21 @@ const TreinoInfo = () => {
     };
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem", mb: 10 }}>
+        <Snackbar
+          open={openSnackBar}
+          autoHideDuration={5000}
+          onClose={handleCloseSnackBar}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={handleCloseSnackBar}
+            severity="success"
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            Copiado para a área de transferência.
+          </Alert>
+        </Snackbar>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography
             variant="h3"
@@ -99,29 +166,41 @@ const TreinoInfo = () => {
             userData.username === username ? (
               <>
                 <Box>
-                  <Button
-                    component={RouterLink}
-                    to={`/conta/treino/editar?id=${treino_id}`}
-                    size="small"
-                    color="action"
-                    sx={{
-                      marginLeft: "0px !important",
-                      "&:hover": { color: "#221c12" },
-                    }}
+                  <IconButton
+                    id="basic-button"
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClickMenu}
                   >
-                    <EditIcon />
-                  </Button>
-                  <Button
-                    size="small"
-                    color="action"
-                    onClick={handleClickOpen}
-                    sx={{
-                      marginLeft: "0px !important",
-                      "&:hover": { color: "#d32f2f" },
+                    <MoreHorizIcon />
+                  </IconButton>
+                  <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={openMenu}
+                    onClose={handleCloseMenu}
+                    MenuListProps={{
+                      "aria-labelledby": "basic-button",
                     }}
+                    disableScrollLock={isMobile ? false : true}
                   >
-                    <DeleteIcon />
-                  </Button>
+                    <MenuItem onClick={handleShare}>
+                      <ShareIcon sx={{ mr: 1 }} />
+                      Compartilhar
+                    </MenuItem>
+                    <MenuItem
+                      component={RouterLink}
+                      to={`/conta/treino/editar?id=${treino_id}`}
+                    >
+                      <EditIcon sx={{ mr: 1 }} />
+                      Editar
+                    </MenuItem>
+                    <MenuItem onClick={handleClickOpen}>
+                      <DeleteIcon sx={{ mr: 1 }} />
+                      Excluir
+                    </MenuItem>
+                  </Menu>
                 </Box>
                 <Dialog
                   open={open}
@@ -145,8 +224,62 @@ const TreinoInfo = () => {
                   </DialogActions>
                 </Dialog>
               </>
-            ) : null
-          ) : null}
+            ) : (
+              <Box>
+                <IconButton
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClickMenu}
+                >
+                  <MoreHorizIcon />
+                </IconButton>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={openMenu}
+                  onClose={handleCloseMenu}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                  disableScrollLock={isMobile ? false : true}
+                >
+                  <MenuItem onClick={handleShare}>
+                    <ShareIcon sx={{ mr: 1 }} />
+                    Compartilhar
+                  </MenuItem>
+                </Menu>
+              </Box>
+            )
+          ) : (
+            <Box>
+              <IconButton
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClickMenu}
+              >
+                <MoreHorizIcon />
+              </IconButton>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={openMenu}
+                onClose={handleCloseMenu}
+                MenuListProps={{
+                  "aria-labelledby": "basic-button",
+                }}
+                disableScrollLock={isMobile ? false : true}
+              >
+                <MenuItem onClick={handleShare}>
+                  <ShareIcon sx={{ mr: 1 }} />
+                  Compartilhar
+                </MenuItem>
+              </Menu>
+            </Box>
+          )}
         </Box>
         <Typography variant="h6" color="textSecondary">
           {data.post_date}
