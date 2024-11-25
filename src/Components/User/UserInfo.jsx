@@ -17,6 +17,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { UserContext } from "../../UserContext";
 import UserInfoLoader from "../Helper/UserInfoLoader";
 import ErrorPage from "../ErrorPage";
+import OfflinePage from "../OfflinePage";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -71,7 +72,7 @@ const UserInfo = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  if (error) return <ErrorPage />;
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   if (loading) return <UserInfoLoader />;
   if (data) {
     return (

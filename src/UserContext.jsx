@@ -15,6 +15,7 @@ export const UserStorage = ({ children }) => {
     const { url, options } = USER_GET(token);
     const response = await fetch(url, options);
     const json = await response.json();
+    window.localStorage.setItem("userData", JSON.stringify(json));
     setData(json);
     setLogin(true);
   }
@@ -49,6 +50,7 @@ export const UserStorage = ({ children }) => {
       setLoading(false);
       setLogin(false);
       window.localStorage.removeItem("token");
+      window.localStorage.removeItem("userData");
       navigate("/login");
     },
     [navigate]
@@ -58,17 +60,28 @@ export const UserStorage = ({ children }) => {
     async function autoLogin() {
       const token = window.localStorage.getItem("token");
       if (token) {
-        try {
-          setError(null);
-          setLoading(true);
-          const { url, options } = TOKEN_VALIDATE_POST(token);
-          const response = await fetch(url, options);
-          if (!response.ok) throw new Error("Token inválido");
-          await getUser(token);
-        } catch (error) {
-          userLogout();
-        } finally {
-          setLoading(false);
+        if (navigator.onLine) {
+          try {
+            setError(null);
+            setLoading(true);
+            const { url, options } = TOKEN_VALIDATE_POST(token);
+            const response = await fetch(url, options);
+            if (!response.ok) throw new Error("Token inválido");
+            await getUser(token);
+          } catch (error) {
+            userLogout();
+          } finally {
+            setLoading(false);
+          }
+        } else {
+          // Se offline, verifica se há dados armazenados
+          const userData = window.localStorage.getItem("userData");
+          if (userData) {
+            setData(JSON.parse(userData));
+            setLogin(true);
+          } else {
+            setLogin(false);
+          }
         }
       } else {
         setLogin(false);

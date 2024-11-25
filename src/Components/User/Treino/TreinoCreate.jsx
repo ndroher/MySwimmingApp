@@ -27,6 +27,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
+import ErrorPage from "../../ErrorPage";
+import OfflinePage from "../../OfflinePage";
 
 function SimpleDialog(props) {
   const {
@@ -61,7 +63,7 @@ function SimpleDialog(props) {
           {exerciciosError && <ListItem>Erro ao carregar dados.</ListItem>}
           {exerciciosData &&
             exerciciosData.map((exercicio, exercicioIndex) => (
-              <Box key={exercicio.id}>
+              <Box key={exercicio.id} sx={{ minWidth: "25rem" }}>
                 <ListItem disableGutters>
                   <ListItemButton
                     onClick={() => handleListItemClick(index, field, exercicio)}
@@ -299,6 +301,7 @@ const TreinoCreate = () => {
     getExercicios();
   }, []);
 
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem", mb: 10 }}>
       <Typography

@@ -10,6 +10,8 @@ import { DISPLAY_NAME_PUT } from "../../api";
 import { useNavigate } from "react-router-dom";
 import Waves from "@mui/icons-material/Waves";
 import { UserContext } from "../../UserContext";
+import ErrorPage from "../ErrorPage";
+import OfflinePage from "../OfflinePage";
 
 const ChangeDisplayName = () => {
   const { data } = React.useContext(UserContext);
@@ -34,6 +36,7 @@ const ChangeDisplayName = () => {
     }
   }
 
+  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
       <Typography
