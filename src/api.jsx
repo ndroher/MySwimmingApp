@@ -61,7 +61,7 @@ export function USER_POST(body) {
 
 export function DISPLAY_NAME_PUT(body, token) {
   return {
-    url: API_URL + "/api/users/me",
+    url: API_URL + "/api/conta/nome",
     options: {
       method: "PUT",
       headers: {
@@ -185,7 +185,7 @@ export function CHANGE_PROFILE_PICTURE_POST(formData, token) {
 
 export function USER_GOALS_PUT(body, token) {
   return {
-    url: API_URL + "/api/user/goals",
+    url: API_URL + "/api/conta/metas",
     options: {
       method: "PUT",
       headers: {
