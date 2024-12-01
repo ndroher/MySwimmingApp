@@ -13,6 +13,7 @@ import { EXERCICIO_POST } from "../../../api";
 import { useNavigate } from "react-router-dom";
 import ErrorPage from "../../ErrorPage";
 import OfflinePage from "../../OfflinePage";
+import Head from "../../Helper/Head";
 
 const ExercicioCreate = () => {
   const nome_exercicio = useForm();
@@ -70,6 +71,7 @@ const ExercicioCreate = () => {
   if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+      <Head title="Criar Novo Exercício" />
       <Typography
         variant="h3"
         gutterBottom

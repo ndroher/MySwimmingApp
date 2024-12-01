@@ -99,7 +99,7 @@ const UserInfo = () => {
                 <>
                   <SearchOutlined sx={{ color: "rgba(0, 0, 0, 0.54)" }} />{" "}
                   <Typography color="textSecondary" variant="subtitle2">
-                    Buscar Usuário
+                    Buscar Usuários
                   </Typography>
                 </>
               )}

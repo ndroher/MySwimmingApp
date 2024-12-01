@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import CloudOffIcon from "@mui/icons-material/CloudOff";
+import Head from "../Components/Helper/Head";
 
 const OfflinePage = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const OfflinePage = () => {
         textAlign: "center",
       }}
     >
+      <Head title="Offline" />
       <CloudOffIcon fontSize="large" />
       <Typography variant="h5" my={1}>
         Você está Offline!

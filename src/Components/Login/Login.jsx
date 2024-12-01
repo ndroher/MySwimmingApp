@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import { useMediaQuery } from "@mui/material";
 import mainImg from "/assets/swimmer-with-equipment-pool-full-shot.jpg";
 import NotFound from "../NotFound";
+import Head from "../Helper/Head";
 
 const Login = () => {
   const { login, data } = React.useContext(UserContext);
@@ -24,6 +25,7 @@ const Login = () => {
         height: `calc(100vh - 64px)`,
       }}
     >
+      <Head title="Login" />
       <Grid
         size={6}
         sx={{

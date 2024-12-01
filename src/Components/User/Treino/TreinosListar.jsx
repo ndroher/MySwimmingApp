@@ -13,6 +13,7 @@ import UserInfo from "../UserInfo";
 import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
 import OfflinePage from "../../OfflinePage";
+import Head from "../../Helper/Head";
 
 const TreinosListar = () => {
   const { username } = useParams();
@@ -37,6 +38,7 @@ const TreinosListar = () => {
 
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+        <Head title="Histórico de Treinos" />
         <UserInfo />
         <Box
           sx={{

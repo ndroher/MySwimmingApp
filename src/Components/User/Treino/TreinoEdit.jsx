@@ -30,6 +30,7 @@ import Divider from "@mui/material/Divider";
 import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
 import OfflinePage from "../../OfflinePage";
+import Head from "../../Helper/Head";
 
 function SimpleDialog(props) {
   const {
@@ -339,6 +340,7 @@ const TreinoEdit = () => {
   if (data && treinoData && exerciciosData) {
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem", mb: 10 }}>
+        <Head title="Editar Treino" />
         <Typography
           variant="h3"
           gutterBottom

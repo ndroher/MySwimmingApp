@@ -14,6 +14,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
 import OfflinePage from "../../OfflinePage";
+import Head from "../../Helper/Head";
 
 const ExercicioEdit = () => {
   const nome_exercicio = useForm();
@@ -98,6 +99,7 @@ const ExercicioEdit = () => {
   if (data)
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+        <Head title="Editar Exercício" />
         <Typography
           variant="h3"
           gutterBottom
