@@ -451,7 +451,7 @@ const TreinoEdit = () => {
                             <Chip
                               key={equipamento}
                               label={equipamento}
-                              sx={{ mr: 1 }}
+                              sx={{ mr: "1rem", my: ".5rem" }}
                             />
                           )
                         )}

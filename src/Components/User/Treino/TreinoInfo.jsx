@@ -323,7 +323,7 @@ const TreinoInfo = () => {
             <Chip
               key={equipamentos_utilizado}
               label={equipamentos_utilizado}
-              sx={{ mr: "1rem" }}
+              sx={{ mr: "1rem", my: ".5rem" }}
             />
           ))}
         </Box>
