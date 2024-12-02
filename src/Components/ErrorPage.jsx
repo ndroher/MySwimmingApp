@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import Head from "../Components/Helper/Head";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const ErrorPage = () => {
         textAlign: "center",
       }}
     >
+      <Head title="Erro" />
       <Typography variant="h1" color="error">
         Erro
       </Typography>

@@ -32,6 +32,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
+import Head from "../../Helper/Head";
 
 const TreinoInfo = () => {
   const { username, treino_id } = useParams();
@@ -127,6 +128,7 @@ const TreinoInfo = () => {
     };
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem", mb: 10 }}>
+        <Head title="Treino" />
         <Snackbar
           open={openSnackBar}
           autoHideDuration={5000}

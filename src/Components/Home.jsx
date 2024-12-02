@@ -13,6 +13,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { Link as RouterLink } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Head from "../Components/Helper/Head";
 
 const Home = () => {
   React.useEffect(() => {
@@ -22,6 +23,7 @@ const Home = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box sx={{ overflowX: "hidden" }}>
+      <Head title="Home" />
       <Box
         sx={{
           position: "relative",

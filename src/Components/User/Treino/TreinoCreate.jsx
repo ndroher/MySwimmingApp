@@ -29,6 +29,7 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import ErrorPage from "../../ErrorPage";
 import OfflinePage from "../../OfflinePage";
+import Head from "../../Helper/Head";
 
 function SimpleDialog(props) {
   const {
@@ -304,6 +305,7 @@ const TreinoCreate = () => {
   if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem", mb: 10 }}>
+      <Head title="Criar Novo Treino" />
       <Typography
         variant="h3"
         gutterBottom

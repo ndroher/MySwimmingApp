@@ -12,6 +12,7 @@ import Waves from "@mui/icons-material/Waves";
 import { UserContext } from "../../UserContext";
 import ErrorPage from "../ErrorPage";
 import OfflinePage from "../OfflinePage";
+import Head from "../Helper/Head";
 
 const ChangeDisplayName = () => {
   const { data } = React.useContext(UserContext);
@@ -39,6 +40,7 @@ const ChangeDisplayName = () => {
   if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+      <Head title="Alterar Nome de Exibição" />
       <Typography
         variant="h3"
         gutterBottom

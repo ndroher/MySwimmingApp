@@ -19,6 +19,7 @@ import ErrorPage from "../ErrorPage";
 import OfflinePage from "../OfflinePage";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Head from "../Helper/Head";
 
 const UserPage = () => {
   const { username } = useParams();
@@ -82,6 +83,7 @@ const UserPage = () => {
 
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+        <Head title="Perfil" />
         <UserInfo />
         <Box sx={{ mt: 4 }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}>

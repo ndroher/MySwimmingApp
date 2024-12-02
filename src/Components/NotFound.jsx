@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import Head from "../Components/Helper/Head";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const NotFound = () => {
         textAlign: "center",
       }}
     >
+      <Head title="Página Não Encontrada" />
       <Typography variant="h1">404</Typography>
       <Typography variant="h4" color="textSecondary">
         Página não encontrada

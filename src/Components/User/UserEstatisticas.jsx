@@ -19,6 +19,7 @@ import { LineChart } from "@mui/x-charts/LineChart";
 import Loading from "../Helper/Loading";
 import ErrorPage from "../ErrorPage";
 import OfflinePage from "../OfflinePage";
+import Head from "../Helper/Head";
 
 //Tipos de nado
 const StyledText = styled("text")(({ theme }) => ({
@@ -87,6 +88,7 @@ const UserEstatisticas = () => {
 
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+        <Head title="Estatísticas" />
         <UserInfo />
         <Box sx={{ paddingBottom: "2em" }}>
           <Paper

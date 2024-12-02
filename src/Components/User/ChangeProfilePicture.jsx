@@ -11,6 +11,7 @@ import Waves from "@mui/icons-material/Waves";
 import { UserContext } from "../../UserContext";
 import ErrorPage from "../ErrorPage";
 import OfflinePage from "../OfflinePage";
+import Head from "../Helper/Head";
 
 const ChangeProfilePicture = () => {
   const { data } = React.useContext(UserContext);
@@ -40,6 +41,7 @@ const ChangeProfilePicture = () => {
   if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+      <Head title="Alterar Foto de Perfil" />
       <Typography
         variant="h3"
         gutterBottom

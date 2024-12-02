@@ -16,6 +16,8 @@ import Waves from "@mui/icons-material/Waves";
 import Loading from "../Helper/Loading";
 import ErrorPage from "../ErrorPage";
 import OfflinePage from "../OfflinePage";
+import Head from "../Helper/Head";
+
 const UserSearch = () => {
   const { data, loading, error, request } = useFetch();
   const [update, setUpdate] = React.useState(0);
@@ -39,6 +41,7 @@ const UserSearch = () => {
     );
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+        <Head title="Buscar Usuários" />
         <Typography
           variant="h3"
           gutterBottom
@@ -57,7 +60,7 @@ const UserSearch = () => {
               left: "-5px",
             }}
           />
-          Buscar Usuário
+          Buscar Usuários
         </Typography>
         <Box
           sx={{
@@ -104,11 +107,11 @@ const UserSearch = () => {
                     gap: 2,
                   }}
                 >
-                  <Avatar
+                  {/* <Avatar
                     alt={user.username}
                     src={user.avatar_url}
                     sx={{ width: 64, height: 64 }}
-                  />
+                  /> */}
                   <Box>
                     <Typography variant="h6">{user.name}</Typography>
                     <Typography variant="subtitle1" color="textSecondary">

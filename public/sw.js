@@ -3,7 +3,7 @@ import { NavigationRoute, registerRoute } from "workbox-routing";
 import { NetworkFirst, NetworkOnly } from "workbox-strategies";
 import { BackgroundSyncPlugin } from "workbox-background-sync";
 
-const API_BASE_URL = "http://myswimmingapp.local/json";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST);
@@ -120,7 +120,7 @@ registerRoute(
 
 // ALTERAR NOME DE EXIBIÇÃO
 registerRoute(
-  ({ url }) => url.href === `${API_BASE_URL}/api/users/me`,
+  ({ url }) => url.href === `${API_BASE_URL}/api/conta/nome`,
   new NetworkOnly({
     plugins: [bgSyncPlugin],
   }),
@@ -138,7 +138,7 @@ registerRoute(
 
 // ALTERAR METAS
 registerRoute(
-  ({ url }) => url.href === `${API_BASE_URL}/api/user/goals`,
+  ({ url }) => url.href === `${API_BASE_URL}/api/conta/metas`,
   new NetworkOnly({
     plugins: [bgSyncPlugin],
   }),

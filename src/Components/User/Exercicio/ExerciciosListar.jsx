@@ -15,6 +15,7 @@ import Waves from "@mui/icons-material/Waves";
 import Loading from "../../Helper/Loading";
 import ErrorPage from "../../ErrorPage";
 import OfflinePage from "../../OfflinePage";
+import Head from "../../Helper/Head";
 
 const Exercicios = () => {
   const { data, loading, error, request } = useFetch();
@@ -38,6 +39,7 @@ const Exercicios = () => {
     );
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+        <Head title="Lista de Exercícios" />
         <Typography
           variant="h3"
           gutterBottom

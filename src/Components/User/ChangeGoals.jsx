@@ -13,6 +13,7 @@ import { UserContext } from "../../UserContext";
 import Loading from "../Helper/Loading";
 import ErrorPage from "../ErrorPage";
 import OfflinePage from "../OfflinePage";
+import Head from "../Helper/Head";
 
 const ChangeGoals = () => {
   const meta_semanal = useForm("number");
@@ -68,6 +69,7 @@ const ChangeGoals = () => {
   if (data)
     return (
       <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
+        <Head title="Alterar Metas" />
         <Typography
           variant="h3"
           gutterBottom
