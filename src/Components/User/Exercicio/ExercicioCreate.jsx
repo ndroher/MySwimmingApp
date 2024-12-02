@@ -68,7 +68,7 @@ const ExercicioCreate = () => {
     }
   }
 
-  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
+  if (error && !navigator.onLine) return <OfflinePage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem" }}>
       <Head title="Criar Novo Exercício" />

@@ -302,7 +302,7 @@ const TreinoCreate = () => {
     getExercicios();
   }, []);
 
-  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
+  if (error && !navigator.onLine) return <OfflinePage />;
   return (
     <Container maxWidth="lg" sx={{ paddingY: "2rem", mb: 10 }}>
       <Head title="Criar Novo Treino" />
