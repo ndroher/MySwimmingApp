@@ -1,4 +1,4 @@
-export const API_URL = "http://myswimmingapp.local/json";
+export const API_URL = import.meta.env.VITE_API_URL;
 
 export function TOKEN_POST(body) {
   return {
@@ -31,6 +31,7 @@ export function USER_GET(token) {
     options: {
       method: "GET",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         Authorization: "Bearer " + token,
       },
     },
@@ -42,6 +43,9 @@ export function USERS_GET() {
     url: API_URL + "/api/users",
     options: {
       method: "GET",
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+      },
     },
   };
 }
@@ -52,6 +56,7 @@ export function USER_POST(body) {
     options: {
       method: "POST",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -65,6 +70,7 @@ export function DISPLAY_NAME_PUT(body, token) {
     options: {
       method: "PUT",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
@@ -79,6 +85,7 @@ export function PASSWORD_LOST(body) {
     options: {
       method: "POST",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -92,6 +99,7 @@ export function PASSWORD_RESET(body) {
     options: {
       method: "POST",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -104,6 +112,9 @@ export function USER_PROFILE_GET(username) {
     url: API_URL + `/api/user/${username}`,
     options: {
       method: "GET",
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+      },
     },
   };
 }
@@ -114,6 +125,7 @@ export function EXERCICIOS_GET(token) {
     options: {
       method: "GET",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         Authorization: "Bearer " + token,
       },
     },
@@ -126,6 +138,7 @@ export function EXERCICIO_POST(body, token) {
     options: {
       method: "POST",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
@@ -139,6 +152,9 @@ export function EXERCICIO_GET(id) {
     url: API_URL + `/api/exercicio/${id}`,
     options: {
       method: "GET",
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+      },
     },
   };
 }
@@ -149,6 +165,7 @@ export function EXERCICIO_PUT(body, token, id) {
     options: {
       method: "PUT",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
@@ -163,6 +180,7 @@ export function EXERCICIO_DELETE(token, id) {
     options: {
       method: "DELETE",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
@@ -176,6 +194,7 @@ export function CHANGE_PROFILE_PICTURE_POST(formData, token) {
     options: {
       method: "POST",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         Authorization: "Bearer " + token,
       },
       body: formData,
@@ -189,6 +208,7 @@ export function USER_GOALS_PUT(body, token) {
     options: {
       method: "PUT",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
@@ -202,6 +222,9 @@ export function USER_HISTORICO_GET(username) {
     url: API_URL + `/api/user/${username}/historico`,
     options: {
       method: "GET",
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+      },
     },
   };
 }
@@ -212,6 +235,7 @@ export function TREINO_POST(body, token) {
     options: {
       method: "POST",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
@@ -225,6 +249,9 @@ export function USER_TREINO_GET(username, treino_id) {
     url: API_URL + `/api/user/${username}/treino/${treino_id}`,
     options: {
       method: "GET",
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+      },
     },
   };
 }
@@ -235,6 +262,7 @@ export function TREINO_DELETE(token, id) {
     options: {
       method: "DELETE",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
@@ -248,6 +276,7 @@ export function TREINO_PUT(body, token, id) {
     options: {
       method: "PUT",
       headers: {
+        "ngrok-skip-browser-warning": "true",
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
@@ -261,6 +290,9 @@ export function USER_ESTATISTICAS_GET(username) {
     url: API_URL + `/api/user/${username}/estatisticas`,
     options: {
       method: "GET",
+      headers: {
+        "ngrok-skip-browser-warning": "true",
+      },
     },
   };
 }

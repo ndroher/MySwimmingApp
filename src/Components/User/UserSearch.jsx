@@ -107,11 +107,11 @@ const UserSearch = () => {
                     gap: 2,
                   }}
                 >
-                  <Avatar
+                  {/* <Avatar
                     alt={user.username}
                     src={user.avatar_url}
                     sx={{ width: 64, height: 64 }}
-                  />
+                  /> */}
                   <Box>
                     <Typography variant="h6">{user.name}</Typography>
                     <Typography variant="subtitle1" color="textSecondary">

@@ -3,7 +3,7 @@ import { NavigationRoute, registerRoute } from "workbox-routing";
 import { NetworkFirst, NetworkOnly } from "workbox-strategies";
 import { BackgroundSyncPlugin } from "workbox-background-sync";
 
-const API_BASE_URL = "http://myswimmingapp.local/json";
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST);

@@ -73,7 +73,7 @@ const UserInfo = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
-  if (loading) return <UserInfoLoader />;
+  if (loading) return <></>;
   if (data) {
     return (
       <>
@@ -105,11 +105,11 @@ const UserInfo = () => {
               )}
             </Button>
           </Box>
-          <Avatar
+          {/* <Avatar
             alt={data.username}
             src={data.avatar_url}
             sx={{ width: 120, height: 120 }}
-          />
+          /> */}
           <Typography variant="h5" sx={{ mt: "1rem" }}>
             {data.display_name}
           </Typography>
@@ -157,9 +157,9 @@ const UserInfo = () => {
               <MenuItem component={RouterLink} to="/conta/alterar-nome">
                 Alterar Nome de Exibição
               </MenuItem>
-              <MenuItem component={RouterLink} to="/conta/alterar-foto">
+              {/* <MenuItem component={RouterLink} to="/conta/alterar-foto">
                 Alterar Foto de Perfil
-              </MenuItem>
+              </MenuItem> */}
             </Menu>
           </Box>
         </Box>
