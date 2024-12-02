@@ -334,8 +334,8 @@ const TreinoEdit = () => {
     }
   }, [treinoData]);
 
-  if (error || treinoError)
-    return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
+  if (error && !navigator.onLine) return <OfflinePage />;
+  if (treinoError) return <ErrorPage />;
   if (loading || treinoLoading) return <Loading />;
   if (data && treinoData && exerciciosData) {
     return (
@@ -451,7 +451,7 @@ const TreinoEdit = () => {
                             <Chip
                               key={equipamento}
                               label={equipamento}
-                              sx={{ mr: 1 }}
+                              sx={{ mr: "1rem", my: ".5rem" }}
                             />
                           )
                         )}

@@ -54,7 +54,7 @@ const ExercicioItem = ({ exercicio, setUpdate }) => {
     >
       <CardContent sx={{ alignSelf: "center" }}>
         <Typography variant="h6">{exercicio.nome}</Typography>
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", flexWrap: "wrap" }}>
           {exercicio.tipo_nado.map((tipo_nado) => (
             <Typography
               key={tipo_nado}

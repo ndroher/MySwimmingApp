@@ -28,8 +28,8 @@ const OfflinePage = () => {
         Você está Offline!
       </Typography>
       <Typography color="textSecondary">
-        Mas não se preocupe, sua requisição foi salva e será enviada quando você
-        estiver online novamente!
+        Mas não se preocupe, sua requisição foi salva e caso tiver sucesso será
+        enviada quando você estiver online novamente!
       </Typography>
       {data ? (
         <Button

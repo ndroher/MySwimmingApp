@@ -64,7 +64,7 @@ const ChangeGoals = () => {
     }
   }
 
-  if (error) return !navigator.onLine ? <OfflinePage /> : <ErrorPage />;
+  if (error && !navigator.onLine) return <OfflinePage />;
   if (loading) return <Loading />;
   if (data)
     return (
