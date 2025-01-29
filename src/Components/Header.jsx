@@ -111,12 +111,11 @@ const Header = () => {
                   >
                     {data.name}
                   </Typography>
-                  {/* <Avatar
+                  <Avatar
                     alt={data.username}
                     src={data.avatar_url}
                     sx={{ width: 32, height: 32 }}
-                  /> */}
-                  <PersonIcon sx={{ width: 32, height: 32 }} />
+                  />
                 </Box>
               </Tooltip>
               <Menu
